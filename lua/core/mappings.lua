@@ -7,10 +7,10 @@ vim.keymap.set('n', '<C-g>', '<Nop>', { noremap = true, silent = true })
 vim.keymap.set('v', '<C-g>', '<Nop>', { noremap = true, silent = true })
 
 -- Window nav
-vim.keymap.set("n", "<M-h>", "<C-w>h", { desc = "switch window left" })
-vim.keymap.set("n", "<M-j>", "<C-w>j", { desc = "switch window down" })
-vim.keymap.set("n", "<M-k>", "<C-w>k", { desc = "switch window up" })
-vim.keymap.set("n", "<M-l>", "<C-w>l", { desc = "switch window right" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 
 -- General controls
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
