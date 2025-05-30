@@ -1,7 +1,7 @@
 vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/venv/bin/python")
 
 vim.g.have_nerd_font = true
-
+vim.opt.termguicolors = true
 -- Indenting
 vim.o.tabstop = 2
 vim.o.softtabstop = 2

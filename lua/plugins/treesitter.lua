@@ -10,8 +10,8 @@ function Plugin.config()
   -- the list of supported parsers is the documentation: 
   -- https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages
 
-  local parsers = {'lua', 'vim', 'vimdoc'}
-  local filetypes = {'lua', 'vim', 'help'}
+  local parsers = {'lua', 'vim', 'vimdoc', 'cpp', 'python', 'go'}
+  local filetypes = {'lua', 'vim', 'help', 'cpp', 'javascript', 'c', 'python', 'go', 'sh'}
 
   user.ensure_installed(parsers)
 
@@ -20,6 +20,8 @@ function Plugin.config()
     desc = 'enable treesitter syntax highlight',
     callback = function()
       vim.treesitter.start()
+      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+      vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end,
   })
 end
