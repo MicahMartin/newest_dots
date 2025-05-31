@@ -36,7 +36,9 @@ vim.o.mouse = "a"
 -- `%@SignCb@ ... %T`	Define a clickable region that calls SignCb() when clicked
 -- define signColumn in statusColumn
 -- should get set by plugin
--- vim.o.winborder = "rounded"
+vim.o.winborder = "none"
+vim.opt.winblend = 15
+vim.opt.pumblend = 15
 vim.o.signcolumn = "yes"
 -- show line numbers in statusColumn
 vim.opt.number = true
@@ -56,13 +58,13 @@ vim.o.updatetime = 200
 -- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
 
+vim.diagnostic.config({
+	virtual_text = { current_line = true }, -- Specify Enable virtual text for diagnostics
+	underline = true,
+	update_in_insert = false, -- Keep diagnostics active in insert mode
+})
 -- diagnostics and lsp stuff
--- vim.diagnostic.config({
--- 	virtual_text = false, -- Specify Enable virtual text for diagnostics
--- 	underline = { severity = vim.diagnostic.severity.ERROR },
--- 	update_in_insert = true, -- Keep diagnostics active in insert mode
--- })
-
+-- vim.o.completeopt = "menuone,popup,noinsert"
 -- Configure how new splits should be opened
 -- vim.o.splitright = true
 -- vim.o.splitbelow = true

@@ -21,10 +21,25 @@ end
 function Plugin.config()
 	local treesitter = require("nvim-treesitter")
 	-- Parsers that should be on the system
-	local parsers =
-		{ "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "markdown_inline", "query", "vim", "vimdoc" }
+	local parsers = {
+		"bash",
+		"c",
+		"diff",
+		"html",
+		"lua",
+		"luadoc",
+		"markdown",
+		"markdown_inline",
+		"query",
+		"vim",
+		"vimdoc",
+		"javascript",
+		"rust",
+		"go",
+		"java",
+	}
 	-- enabled filetypes for treesitter
-	local filetypes = { "lua", "vim", "help", "cpp", "javascript", "c", "python", "go", "sh", "query" }
+	local filetypes = { "lua", "vim", "help", "cpp", "javascript", "c", "python", "go", "sh", "query", "markdown" }
 
 	-- check if we're missing any of the mando parsers
 	local missing = ensure_installed(parsers, treesitter.get_installed())
@@ -36,10 +51,10 @@ function Plugin.config()
 		pattern = filetypes,
 		desc = "enable treesitter syntax highlight",
 		callback = function()
-			vim.treesitter.start()
 			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			vim.notify_once("treesitter good!")
+			vim.treesitter.start()
 		end,
 	})
 

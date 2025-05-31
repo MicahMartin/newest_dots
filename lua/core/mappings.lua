@@ -96,6 +96,10 @@ vim.keymap.set("n", "<leader>fp", function()
 end, { desc = "Copy file path to clipboard" })
 
 -- Toggle LSP diagnostics visibility
+-- Code action
+vim.keymap.set("n", "gk", function()
+	vim.lsp.buf.code_action()
+end, { desc = "{USER}Perform code action" })
 -- local isLspDiagnosticsVisible = true
 -- vim.keymap.set("n", "<leader>lx", function()
 -- 	isLspDiagnosticsVisible = not isLspDiagnosticsVisible
