@@ -1,10 +1,10 @@
 local opts = { noremap = true, silent = true }
 
 -- Unbind Ctrl+g since we use that for terminal
-vim.keymap.set('n', '<C-g>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set("n", "<C-g>", "<Nop>", { noremap = true, silent = true })
 
--- Unbind in visual mode too 
-vim.keymap.set('v', '<C-g>', '<Nop>', { noremap = true, silent = true })
+-- Unbind in visual mode too
+vim.keymap.set("v", "<C-g>", "<Nop>", { noremap = true, silent = true })
 
 -- Window nav
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
@@ -16,9 +16,6 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
-
-
-
 
 -- nvim tree
 -- vim.keymap.set("n", "<C-n>", "<cmd>Neotree toggle<CR>", { desc = "nvimtree toggle window" })
@@ -60,7 +57,6 @@ vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" 
 -- vim.keymap.set("v", "<", "<gv", opts)
 -- vim.keymap.set("v", ">", ">gv", opts)
 
-
 -- LEADER COMMANDS
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 -- format without prettier using the built in
@@ -94,17 +90,17 @@ vim.keymap.set("n", "x", '"_x', opts)
 
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()
-  local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
-  vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
-  print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
+	local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
+	vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
+	print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 end, { desc = "Copy file path to clipboard" })
 
 -- Toggle LSP diagnostics visibility
 -- local isLspDiagnosticsVisible = true
 -- vim.keymap.set("n", "<leader>lx", function()
---     isLspDiagnosticsVisible = not isLspDiagnosticsVisible
---     vim.diagnostic.config({
---         virtual_text = isLspDiagnosticsVisible,
---         underline = isLspDiagnosticsVisible
---     })
+-- 	isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+-- 	vim.diagnostic.config({
+-- 		virtual_text = isLspDiagnosticsVisible,
+-- 		underline = isLspDiagnosticsVisible,
+-- 	})
 -- end, { desc = "Toggle LSP diagnostics" })

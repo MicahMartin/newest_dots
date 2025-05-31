@@ -1,13 +1,12 @@
 -- gotta do this for bob nvim
-vim.g.python3_host_prog = vim.fn.expand('~/.config/nvim/venv/bin/python')
+vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/venv/bin/python")
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+	vim.o.clipboard = "unnamedplus"
 end)
 
 -- idk pretty sure we need this
 vim.g.have_nerd_font = true
 vim.opt.termguicolors = true
-
 
 -- TEXT STUFF --
 -- these 4 options should change <tab> to 2 spaces
@@ -21,7 +20,7 @@ vim.o.smartindent = true
 -- set fold level to 1, keep top level open
 vim.o.foldlevel = 1
 -- set fold method to expression for plugins
-vim.o.foldmethod = 'expr'
+vim.o.foldmethod = "expr"
 -- wrap long lines (nasty)
 vim.o.wrap = false
 -- not sure what these do yet
@@ -30,16 +29,17 @@ vim.opt.fillchars = { eob = " " }
 -- searching
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- UI --
 -- %l is number, %s is sign, %C is fold col
 -- `%@SignCb@ ... %T`	Define a clickable region that calls SignCb() when clicked
 -- define signColumn in statusColumn
 -- should get set by plugin
--- vim.o.signcolumn = 'yes'
+-- vim.o.winborder = "rounded"
+vim.o.signcolumn = "yes"
 -- show line numbers in statusColumn
-vim.opt.number = true;
+vim.opt.number = true
 -- always show the status line for every window!
 vim.o.laststatus = 3
 -- tries to put mode into statusline
@@ -51,10 +51,17 @@ vim.o.statusline = "😃%<%f %h%w%m%r%=%-14.(%l,%c%V%) %P"
 vim.o.undofile = true
 
 -- Decrease update time
-vim.o.updatetime = 50
+vim.o.updatetime = 200
 
 -- Decrease mapped sequence wait time
 vim.o.timeoutlen = 300
+
+-- diagnostics and lsp stuff
+-- vim.diagnostic.config({
+-- 	virtual_text = false, -- Specify Enable virtual text for diagnostics
+-- 	underline = { severity = vim.diagnostic.severity.ERROR },
+-- 	update_in_insert = true, -- Keep diagnostics active in insert mode
+-- })
 
 -- Configure how new splits should be opened
 -- vim.o.splitright = true

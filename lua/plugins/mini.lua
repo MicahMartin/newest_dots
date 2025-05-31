@@ -3,7 +3,7 @@
 -- you can read their documentation on github:
 -- https://github.com/echasnovski/mini.nvim
 
-local Plugin = {'echasnovski/mini.nvim'}
+local Plugin = { "echasnovski/mini.nvim" }
 
 Plugin.lazy = false
 
@@ -21,18 +21,19 @@ Plugin.lazy = false
 -- }
 
 function Plugin.config()
-  require('mini.surround').setup({})
+  require("mini.surround").setup({})
 
-  require('mini.pairs').setup({})
+  require("mini.pairs").setup({})
 
-  require('mini.ai').setup({n_lines = 500})
+  require("mini.ai").setup({ n_lines = 500 })
 
-  require('mini.splitjoin').setup({})
+  require("mini.splitjoin").setup({})
 
   --require('mini.move').setup({})
   --
-  require('mini.operators').setup({})
+  require("mini.operators").setup({})
 
-  require('mini.icons').setup({style = 'glyph'})
+  require("mini.icons").setup({ style = "glyph" })
 end
+
 return Plugin
