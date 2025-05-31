@@ -7,4 +7,4 @@ Plugin.opts = {
   ui = {border = 'rounded'}
 }
 
-return Plugin
+return {}

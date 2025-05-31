@@ -57,12 +57,12 @@ vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" 
 -- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "moves lines down in visual selection" })
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "moves lines up in visual selection" })
 -- Dont deselect after indenting
-vim.keymap.set("v", "<", "<gv", opts)
-vim.keymap.set("v", ">", ">gv", opts)
+-- vim.keymap.set("v", "<", "<gv", opts)
+-- vim.keymap.set("v", ">", ">gv", opts)
 
 
 -- LEADER COMMANDS
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 -- format without prettier using the built in
 -- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
@@ -100,11 +100,11 @@ vim.keymap.set("n", "<leader>fp", function()
 end, { desc = "Copy file path to clipboard" })
 
 -- Toggle LSP diagnostics visibility
-local isLspDiagnosticsVisible = true
-vim.keymap.set("n", "<leader>lx", function()
-    isLspDiagnosticsVisible = not isLspDiagnosticsVisible
-    vim.diagnostic.config({
-        virtual_text = isLspDiagnosticsVisible,
-        underline = isLspDiagnosticsVisible
-    })
-end, { desc = "Toggle LSP diagnostics" })
+-- local isLspDiagnosticsVisible = true
+-- vim.keymap.set("n", "<leader>lx", function()
+--     isLspDiagnosticsVisible = not isLspDiagnosticsVisible
+--     vim.diagnostic.config({
+--         virtual_text = isLspDiagnosticsVisible,
+--         underline = isLspDiagnosticsVisible
+--     })
+-- end, { desc = "Toggle LSP diagnostics" })

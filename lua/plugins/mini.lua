@@ -30,7 +30,7 @@ function Plugin.config()
   require('mini.splitjoin').setup({})
 
   --require('mini.move').setup({})
-
+  --
   require('mini.operators').setup({})
 
   require('mini.icons').setup({style = 'glyph'})
