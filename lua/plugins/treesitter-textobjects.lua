@@ -1,9 +1,9 @@
-local Plugin = { "nvim-treesitter/nvim-treesitter-textobjects" }
+local M = { "nvim-treesitter/nvim-treesitter-textobjects" }
 
-Plugin.branch = "main"
-Plugin.lazy = false
+M.branch = "main"
+M.lazy = false
 
-function Plugin.config()
+function M.config()
 	local ts_select_mod = require("nvim-treesitter-textobjects.select")
 
 	local keymap = function(lhs, ts_capture)
@@ -26,4 +26,4 @@ function Plugin.config()
 	end, { desc = "insjump" })
 end
 
-return Plugin
+return M

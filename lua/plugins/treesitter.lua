@@ -1,9 +1,9 @@
-local Plugin = { "nvim-treesitter/nvim-treesitter" }
+local M = { "nvim-treesitter/nvim-treesitter" }
 
-Plugin.branch = "main"
-Plugin.build = ":TSUpdate"
-Plugin.lazy = false
-Plugin.priority = 1000
+M.branch = "main"
+M.build = ":TSUpdate"
+M.lazy = false
+M.priority = 1000
 
 function ensure_installed(parsers, installedParsers)
 	local missing = {}
@@ -18,7 +18,7 @@ function ensure_installed(parsers, installedParsers)
 	return missing
 end
 
-function Plugin.config()
+function M.config()
 	local treesitter = require("nvim-treesitter")
 	-- Parsers that should be on the system
 	local parsers = {
@@ -82,5 +82,5 @@ function Plugin.config()
 	treesitter.setup({})
 end
 
-return Plugin
+return M
 

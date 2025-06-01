@@ -1,13 +1,13 @@
-local Plugin = { "williamboman/mason.nvim" }
+local M = { "williamboman/mason.nvim" }
 
-Plugin.lazy = false
+M.lazy = false
 
-Plugin.dependencies = {
+M.dependencies = {
 	{ "nvim-lspconfig", lazy = false },
 	{ "williamboman/mason-lspconfig.nvim" },
 }
 
-function Plugin.config()
+function M.config()
 	-- require("nvim-lspconfig").setup()
 	require("mason").setup({})
 	require("mason-lspconfig").setup({
@@ -15,5 +15,5 @@ function Plugin.config()
 	})
 end
 
--- return Plugin
+-- return M
 return {}

@@ -1,4 +1,4 @@
-Plugins = {
+M = {
 	{
 		"catgoose/nvim-colorizer.lua",
 		event = "BufReadPre",
@@ -11,4 +11,4 @@ Plugins = {
 	},
 }
 
-return Plugins
+return M

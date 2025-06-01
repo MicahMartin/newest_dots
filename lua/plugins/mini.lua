@@ -3,11 +3,11 @@
 -- you can read their documentation on github:
 -- https://github.com/echasnovski/mini.nvim
 
-local Plugin = { "echasnovski/mini.nvim" }
+local M = { "echasnovski/mini.nvim" }
 
-Plugin.lazy = false
+M.lazy = false
 
--- Plugin.dependencies = {
+-- M.dependencies = {
 --   {'rafamadriz/friendly-snippets'},
 --   {
 --     'JoosepAlviste/nvim-ts-context-commentstring',
@@ -20,7 +20,7 @@ Plugin.lazy = false
 --   }
 -- }
 
-function Plugin.config()
+function M.config()
 	require("mini.surround").setup({})
 
 	require("mini.pairs").setup({})
@@ -36,5 +36,5 @@ function Plugin.config()
 	-- require("mini.icons").setup({ style = "glyph" })
 end
 
-return Plugin
+return M
 -- return {}

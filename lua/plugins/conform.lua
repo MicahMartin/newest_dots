@@ -1,8 +1,8 @@
-local Plugin = { "stevearc/conform.nvim" }
+local M = { "stevearc/conform.nvim" }
 
-Plugin.event = { "BufWritePre" }
-Plugin.cmd = { "ConformInfo" }
-Plugin.keys = {
+M.event = { "BufWritePre" }
+M.cmd = { "ConformInfo" }
+M.keys = {
 	{
 		"<leader>a",
 		function()
@@ -14,7 +14,7 @@ Plugin.keys = {
 	},
 }
 
-function Plugin.config()
+function M.config()
 	require("conform").setup({
 		formatters_by_ft = {
 			lua = { "stylua" },
@@ -32,4 +32,4 @@ function Plugin.config()
 	})
 end
 
-return Plugin
+return M

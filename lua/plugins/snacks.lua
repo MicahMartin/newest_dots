@@ -1,11 +1,19 @@
-local Plugin = { "folke/snacks.nvim" }
+local M = { "folke/snacks.nvim" }
 local user = {}
 
-Plugin.lazy = false
-Plugin.priority = 1000
+M.lazy = false
+M.priority = 1000
 
+M.opts = {
+	indent = user.indentConf,
+	input = user.inputConf,
+	explorer = user.explorerConf,
+	picker = user.pickerConf,
+	notifier = { enabled = true },
+	statuscolumn = { enabled = true },
+}
 
-function Plugin.init()
+function M.init()
 	vim.g.snacks_animate = false
 	vim.api.nvim_create_autocmd("User", {
 		pattern = "VeryLazy",
@@ -13,7 +21,7 @@ function Plugin.init()
 	})
 end
 
-Plugin.keys = {
+M.keys = {
 	{
 		"t",
 		desc = "File Explorer",
@@ -336,13 +344,4 @@ user.pickerConf = {
 	},
 }
 
-Plugin.opts = {
-	indent = user.indentConf,
-	input = user.inputConf,
-	explorer = user.explorerConf,
-	picker = user.pickerConf,
-	notifier = { enabled = true },
-	statuscolumn = { enabled = true },
-}
-
-return Plugin
+return M

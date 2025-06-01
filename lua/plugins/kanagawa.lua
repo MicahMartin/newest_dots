@@ -1,5 +1,35 @@
 local user = {}
 
+local M = { "rebelot/kanagawa.nvim" }
+
+M.lazy = false
+M.priority = 1000
+
+function M.config()
+	require("kanagawa").setup({
+		compile = true,
+		commentStyle = { italic = false },
+    terminalColors = true, 
+		colors = {
+			theme = {
+				all = {
+					ui = {
+						bg_gutter = "none",
+					},
+				},
+			},
+		},
+    theme = "wave",
+    background = {
+      dark = "wave",
+      light = "lotus"
+    },
+		overrides = user.overrideFn,
+	})
+
+	vim.cmd([[colorscheme kanagawa]])
+end
+
 function user.overrideFn(colors)
 	local theme = colors.theme
 	local makeDiagnosticColor = function(color)
@@ -62,34 +92,4 @@ function user.overrideFn(colors)
 	}
 end
 
-local Plugin = { "rebelot/kanagawa.nvim" }
-
-Plugin.lazy = false
-Plugin.priority = 1000
-
-function Plugin.config()
-	require("kanagawa").setup({
-		compile = true,
-		commentStyle = { italic = false },
-    terminalColors = true, 
-		colors = {
-			theme = {
-				all = {
-					ui = {
-						bg_gutter = "none",
-					},
-				},
-			},
-		},
-    theme = "wave",
-    background = {
-      dark = "wave",
-      light = "lotus"
-    },
-		overrides = user.overrideFn,
-	})
-
-	vim.cmd([[colorscheme kanagawa]])
-end
-
-return Plugin
+return M
