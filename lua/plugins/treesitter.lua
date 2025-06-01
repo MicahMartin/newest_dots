@@ -1,86 +1,64 @@
-local M = { "nvim-treesitter/nvim-treesitter" }
+return {
+  'nvim-treesitter/nvim-treesitter',
+  lazy = false,
+  branch = "main",
+  build = function()
+    local parser_installed = {
+      "c", 
+      "cpp", 
+      "diff", 
+      "dockerfile", 
+      "go", 
+      "gomod", 
+      "gosum", 
+      "html", 
+      "css", 
+      "javascript", 
+      "typescript", 
+      "lua", 
+      "markdown", 
+      "markdown_inline", 
+      "comment", 
+      "python", 
+      "rust", 
+      "sql", 
+      "tsx", 
+      "yaml", 
+      "bash", 
+      "http", 
+      "xml", 
+      "jq", 
+      "json", 
+      "printf", 
+      "vim", 
+      "vimdoc", 
+      "query", 
+      "cmake", 
+      "dot", 
+      "graphql", 
+      "ini", 
+      "jsdoc", 
+      "luadoc", 
+      "make", 
+      "regex", 
+    }
+    vim.notify_once("installing parsers")
+    require("nvim-treesitter").install(parser_installed)
+    require("nvim-treesitter").update()
+  end,
 
-M.branch = "main"
-M.build = ":TSUpdate"
-M.lazy = false
-M.priority = 1000
-
-function ensure_installed(parsers, installedParsers)
-	local missing = {}
-
-	for _, parser in ipairs(parsers) do
-		local installed = vim.tbl_contains(installedParsers, parser)
-
-		if not installed then
-			table.insert(missing, parser)
-		end
-	end
-	return missing
-end
-
-function M.config()
-	local treesitter = require("nvim-treesitter")
-	-- Parsers that should be on the system
-	local parsers = {
-		"query",
-		"lua",
-		"luadoc",
-		"vim",
-		"vimdoc",
-		"markdown",
-		"markdown_inline",
-		"c",
-		-- "cpp",
-		-- "javascript",
-		-- "typescript",
-		"python",
-		-- "go",
-		"bash",
-		-- "diff",
-		"html",
-		"regex",
-		-- "xml",
-		-- "rust",
-		-- "json",
-		-- "java",
-	}
-	-- enabled filetypes for treesitter
-	local filetypes = {
-		"c",
-		"cpp",
-		"javascript",
-		"typescript",
-		"python",
-		"go",
-		"sh",
-		"query",
-		"markdown",
-		"json",
-		"xml",
-		"lua",
-		"vim",
-		"help",
-	}
-
-	-- check if we're missing any of the mando parsers
-	local missing = ensure_installed(parsers, treesitter.get_installed())
-	if not vim.tbl_isempty(missing) then
-		treesitter.install(missing)
-	end
-
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = filetypes,
-		desc = "enable treesitter syntax highlight",
-		callback = function()
-			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-			vim.notify_once("treesitter good!")
-			vim.treesitter.start()
-		end,
-	})
-
-	treesitter.setup({})
-end
-
-return M
-
+  init = function ()
+    vim.api.nvim_create_autocmd("FileType", {
+      callback = function(args)
+        local filetype = args.match
+        local lang = vim.treesitter.language.get_lang(filetype)
+        if vim.treesitter.language.add(lang) then
+          vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          vim.treesitter.start()
+          vim.notify_once("yooooo?!?!?")
+        end
+      end
+    })
+  end,
+}

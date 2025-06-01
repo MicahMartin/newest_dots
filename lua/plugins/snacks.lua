@@ -1,16 +1,159 @@
 local M = { "folke/snacks.nvim" }
 local user = {}
 
+function user.setKeys()
+	_G.dd = function(...)
+		Snacks.debug.inspect(...)
+	end
+	_G.bt = function()
+		Snacks.debug.backtrace()
+	end
+	vim.print = _G.dd
+
+	Snacks.toggle.line_number():map("<leader>ul")
+	Snacks.toggle.inlay_hints():map("<leader>uh")
+end
+
+user.inputConf = {
+	enabled = true,
+	icon = "❯",
+}
+
+user.indentConf = {
+	enabled = true,
+	char = "▏",
+	scope = { enabled = false },
+	-- only_scope = true,
+	chunk = { enabled = true, char = { vertial = "▏" } },
+}
+
+user.explorerConf = {
+	enabled = true,
+	replace_netrw = true,
+}
+
+user.teleLayout = {
+	reverse = true, -- set to false for search bar to be on top
+	layout = {
+		box = "horizontal",
+		backdrop = false,
+		width = 0.8,
+		height = 0.9,
+		border = "none",
+		{
+			box = "vertical",
+			{ win = "list", title = " Results ", title_pos = "center", border = "none" },
+			{
+				win = "input",
+				height = 1,
+				border = "none",
+				title = "{title} {live} {flags}",
+				title_pos = "center",
+			},
+		},
+		{
+			win = "preview",
+			title = "{preview:Preview}",
+			width = 0.50,
+			border = "none",
+			title_pos = "center",
+		},
+	},
+}
+
+user.pickerConf = {
+	enabled = true,
+	matchers = { frecency = true, cwd_bonus = false },
+	formatters = {
+		file = {
+			filename_first = false,
+			filename_only = false,
+			icon_width = 2,
+		},
+	},
+	layout = {
+		-- presets options : "default" , "ivy" , "ivy-split" , "telescope" , "vscode", "select" , "sidebar"
+		preset = "telescope", -- defaults to this layout unless overidden
+		cycle = false,
+	},
+
+	layouts = {
+		select = {
+			preview = false,
+			layout = {
+				backdrop = false,
+				width = 0.6,
+				min_width = 80,
+				height = 0.4,
+				min_height = 10,
+				box = "vertical",
+				border = "none",
+				title = "{title}",
+				title_pos = "center",
+				{ win = "input", height = 1, border = "bottom" },
+				{ win = "list", border = "none" },
+				{ win = "preview", title = "{preview}", width = 0.6, height = 0.4, border = "top" },
+			},
+		},
+		telescope = {
+			reverse = false, -- set to false for search bar to be on top
+			layout = {
+				box = "horizontal",
+				backdrop = false,
+				width = 0.8,
+				height = 0.9,
+				border = "none",
+				{
+					box = "vertical",
+					{
+						win = "input",
+						height = 1,
+						border = "none",
+						title = "{title} {live} {flags}",
+						title_pos = "center",
+					},
+					{ win = "list", title = " Results ", title_pos = "center", border = "none" },
+				},
+				{
+					win = "preview",
+					title = "{preview:Preview}",
+					width = 0.50,
+					border = "none",
+					title_pos = "center",
+				},
+			},
+		},
+		ivy = {
+			layout = {
+				box = "vertical",
+				backdrop = false,
+				width = 0,
+				height = 0.4,
+				position = "bottom",
+				border = "top",
+				title = " {title} {live} {flags}",
+				title_pos = "left",
+				{ win = "input", height = 1, border = "bottom" },
+				{
+					box = "horizontal",
+					{ win = "list", border = "none" },
+					{ win = "preview", title = "{preview}", width = 0.5, border = "left" },
+				},
+			},
+		},
+	},
+}
+
 M.lazy = false
 M.priority = 1000
 
 M.opts = {
-	indent = user.indentConf,
-	input = user.inputConf,
-	explorer = user.explorerConf,
-	picker = user.pickerConf,
-	notifier = { enabled = true },
-	statuscolumn = { enabled = true },
+  indent = user.indentConf,
+  input = user.inputConf,
+  explorer = user.explorerConf,
+  picker = user.pickerConf,
+  notifier = { enabled = true },
+  statuscolumn = { enabled = true },
 }
 
 function M.init()
@@ -201,147 +344,5 @@ M.keys = {
 	},
 }
 
-function user.setKeys()
-	_G.dd = function(...)
-		Snacks.debug.inspect(...)
-	end
-	_G.bt = function()
-		Snacks.debug.backtrace()
-	end
-	vim.print = _G.dd
-
-	Snacks.toggle.line_number():map("<leader>ul")
-	Snacks.toggle.inlay_hints():map("<leader>uh")
-end
-
-user.inputConf = {
-	enabled = true,
-	icon = "❯",
-}
-
-user.indentConf = {
-	enabled = true,
-	char = "▏",
-	scope = { enabled = false },
-	-- only_scope = true,
-	chunk = { enabled = true, char = { vertial = "▏" } },
-}
-
-user.explorerConf = {
-	enabled = true,
-	replace_netrw = true,
-}
-
-user.teleLayout = {
-	reverse = true, -- set to false for search bar to be on top
-	layout = {
-		box = "horizontal",
-		backdrop = false,
-		width = 0.8,
-		height = 0.9,
-		border = "none",
-		{
-			box = "vertical",
-			{ win = "list", title = " Results ", title_pos = "center", border = "none" },
-			{
-				win = "input",
-				height = 1,
-				border = "none",
-				title = "{title} {live} {flags}",
-				title_pos = "center",
-			},
-		},
-		{
-			win = "preview",
-			title = "{preview:Preview}",
-			width = 0.50,
-			border = "none",
-			title_pos = "center",
-		},
-	},
-}
-
-user.pickerConf = {
-	enabled = true,
-	matchers = { frecency = true, cwd_bonus = false },
-	formatters = {
-		file = {
-			filename_first = false,
-			filename_only = false,
-			icon_width = 2,
-		},
-	},
-	layout = {
-		-- presets options : "default" , "ivy" , "ivy-split" , "telescope" , "vscode", "select" , "sidebar"
-		preset = "telescope", -- defaults to this layout unless overidden
-		cycle = false,
-	},
-
-	layouts = {
-		select = {
-			preview = false,
-			layout = {
-				backdrop = false,
-				width = 0.6,
-				min_width = 80,
-				height = 0.4,
-				min_height = 10,
-				box = "vertical",
-				border = "none",
-				title = "{title}",
-				title_pos = "center",
-				{ win = "input", height = 1, border = "bottom" },
-				{ win = "list", border = "none" },
-				{ win = "preview", title = "{preview}", width = 0.6, height = 0.4, border = "top" },
-			},
-		},
-		telescope = {
-			reverse = false, -- set to false for search bar to be on top
-			layout = {
-				box = "horizontal",
-				backdrop = false,
-				width = 0.8,
-				height = 0.9,
-				border = "none",
-				{
-					box = "vertical",
-					{
-						win = "input",
-						height = 1,
-						border = "none",
-						title = "{title} {live} {flags}",
-						title_pos = "center",
-					},
-					{ win = "list", title = " Results ", title_pos = "center", border = "none" },
-				},
-				{
-					win = "preview",
-					title = "{preview:Preview}",
-					width = 0.50,
-					border = "none",
-					title_pos = "center",
-				},
-			},
-		},
-		ivy = {
-			layout = {
-				box = "vertical",
-				backdrop = false,
-				width = 0,
-				height = 0.4,
-				position = "bottom",
-				border = "top",
-				title = " {title} {live} {flags}",
-				title_pos = "left",
-				{ win = "input", height = 1, border = "bottom" },
-				{
-					box = "horizontal",
-					{ win = "list", border = "none" },
-					{ win = "preview", title = "{preview}", width = 0.5, border = "left" },
-				},
-			},
-		},
-	},
-}
 
 return M

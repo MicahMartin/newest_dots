@@ -1,7 +1,6 @@
 local M = { "nvim-treesitter/nvim-treesitter-textobjects" }
 
 M.branch = "main"
-M.lazy = false
 
 function M.config()
 	local ts_select_mod = require("nvim-treesitter-textobjects.select")
