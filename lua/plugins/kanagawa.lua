@@ -8,20 +8,22 @@ function user.overrideFn(colors)
 	end
 
 	return {
+    -- These options, in isolation without blink or snacks or noice is what we want.
 		DiagnosticVirtualTextHint = makeDiagnosticColor(colors.theme.diag.hint),
 		DiagnosticVirtualTextInfo = makeDiagnosticColor(colors.theme.diag.info),
 		DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
 		DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
+
+    Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
+    PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+    PmenuSbar = { bg = theme.ui.bg_m1 },
+    PmenuThumb = { bg = theme.ui.bg_p2 },
 
 		-- NormalFloat = { bg = "none" },
 		-- FloatTitle = { bg = "none" },
 		-- FloatBorder = { bg = "none" },
 		-- compare highlight groups
 		-- Pmenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-    Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
-    PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-    PmenuSbar = { bg = theme.ui.bg_m1 },
-    PmenuThumb = { bg = theme.ui.bg_p2 },
 		-- NormalFloat = { bg = "none" },
 		-- FloatTitle = { bg = "none" },
 		-- EndOfBuffer:BlinkCmpDoc
@@ -88,10 +90,10 @@ function Plugin.config()
 				},
 			},
 		},
-    theme = "wave",              -- Load "wave" theme
-    background = {               -- map the value of 'background' option to a theme
-        dark = "wave",           -- try "dragon" !
-        light = "lotus"
+    theme = "wave",
+    background = {
+      dark = "wave",
+      light = "lotus"
     },
 		overrides = user.overrideFn,
 	})
