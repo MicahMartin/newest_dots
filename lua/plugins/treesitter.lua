@@ -37,6 +37,7 @@ function Plugin.config()
 		"rust",
 		"go",
 		"java",
+		"python",
 	}
 	-- enabled filetypes for treesitter
 	local filetypes = { "lua", "vim", "help", "cpp", "javascript", "c", "python", "go", "sh", "query", "markdown" }

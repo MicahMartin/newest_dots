@@ -23,5 +23,4 @@ Plugin.opts = {
 	},
 }
 
--- return {}
 return Plugin
