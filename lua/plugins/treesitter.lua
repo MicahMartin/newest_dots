@@ -34,13 +34,16 @@ function Plugin.config()
 		"vim",
 		"vimdoc",
 		"javascript",
+		"typescript",
+		"xml",
 		"rust",
 		"go",
 		"java",
 		"python",
 	}
 	-- enabled filetypes for treesitter
-	local filetypes = { "lua", "vim", "help", "cpp", "javascript", "c", "python", "go", "sh", "query", "markdown" }
+	local filetypes =
+		{ "lua", "vim", "help", "cpp", "javascript", "typescript", "c", "python", "go", "sh", "query", "markdown" }
 
 	-- check if we're missing any of the mando parsers
 	local missing = ensure_installed(parsers, treesitter.get_installed())

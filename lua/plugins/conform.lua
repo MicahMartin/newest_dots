@@ -22,6 +22,7 @@ function Plugin.config()
 			python = { "isort", "black" },
 			rust = { "rustfmt", lsp_format = "fallback" },
 			javascript = { "prettierd" },
+			typescript = { "prettierd" },
 		},
 		format_on_save = {
 			-- These options will be passed to conform.format()
