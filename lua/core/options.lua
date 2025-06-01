@@ -1,5 +1,8 @@
 -- gotta do this for bob nvim
 vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/venv/bin/python")
+-- lets try this instead
+-- vim.opt.clipboard = ""
+
 vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
