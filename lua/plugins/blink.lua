@@ -34,7 +34,7 @@ Plugin.opts = {
 		keyword = { range = "full" },
 		accept = { auto_brackets = { enabled = true } },
 		list = { selection = { preselect = true, auto_insert = false } },
-		documentation = { auto_show = true, auto_show_delay_ms = 400 },
+		documentation = { auto_show = true, auto_show_delay_ms = 300 },
 		ghost_text = { enabled = true },
 	},
 	appearance = {

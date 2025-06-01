@@ -37,7 +37,7 @@ Plugin.keys = {
 		end,
 	},
 	{
-		"<C-r>",
+		"<C-t>",
 		function()
 			Snacks.picker.jumps()
 		end,
@@ -99,13 +99,13 @@ Plugin.keys = {
 		end,
 		desc = "Delete all Buffers",
 	},
-	-- {
-	-- 	"<leader>n",
-	-- 	function()
-	-- 		Snacks.notifier.show_history()
-	-- 	end,
-	-- 	desc = "Notification History",
-	-- },
+	{
+		"<leader>n",
+		function()
+			Snacks.notifier.show_history()
+		end,
+		desc = "Notification History",
+	},
 	{
 		"<leader>s",
 		function()

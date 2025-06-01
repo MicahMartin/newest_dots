@@ -6,11 +6,18 @@ vim.keymap.set("n", "<C-g>", "<Nop>", { noremap = true, silent = true })
 -- Unbind in visual mode too
 vim.keymap.set("v", "<C-g>", "<Nop>", { noremap = true, silent = true })
 
+-- unbind s and S, we need those for surround
+vim.keymap.set("n", "s", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "S", "<Nop>", { noremap = true, silent = true })
+
 -- Window nav
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
+
+vim.keymap.set("n", ",", "'", { desc = "Remap of mark create" })
 
 -- General controls
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
