@@ -19,21 +19,11 @@ function user.overrideFn(colors)
     PmenuSbar = { bg = theme.ui.bg_m1 },
     PmenuThumb = { bg = theme.ui.bg_p2 },
 
-		-- NormalFloat = { bg = "none" },
-		-- FloatTitle = { bg = "none" },
-		-- FloatBorder = { bg = "none" },
-		-- compare highlight groups
-		-- Pmenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-		-- NormalFloat = { bg = "none" },
-		-- FloatTitle = { bg = "none" },
-		-- EndOfBuffer:BlinkCmpDoc
-		-- Normal:BlinkCmpSignatureHelp
-		-- FloatBorder:BlinkCmpSignatureHelpBorder
 		BlinkCmpMenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
 		BlinkCmpMenuSelection = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
 		BlinkCmpScrollBarGutter = { bg = colors.theme.ui.bg_m1 },
 		BlinkCmpScrollBarThumb = { bg = colors.theme.ui.bg_p2 },
-    
+
 		-- Snacks specific
 		SnacksIndent = { fg = theme.ui.bg_p2, nocombine = true },
 		SnacksIndentScope = { fg = theme.ui.pmenu.bg, nocombine = true },
