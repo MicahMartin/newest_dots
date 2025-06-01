@@ -4,13 +4,13 @@ vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/venv/bin/python")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- lots of plugins check this value
+vim.g.have_nerd_font = true
+
 vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
 end)
 
--- idk pretty sure we need this
-vim.g.have_nerd_font = true
--- vim.opt.termguicolors = true
 
 -- TEXT STUFF --
 -- these 4 options should change <tab> to 2 spaces
@@ -26,7 +26,7 @@ vim.o.foldlevel = 1
 -- set fold method to expression for plugins
 vim.o.foldmethod = "expr"
 -- wrap long lines (nasty)
-vim.o.wrap = false
+vim.o.wrap = true
 -- not sure what these do yet
 vim.opt.fillchars = { eob = " " }
 -- searching
@@ -35,23 +35,23 @@ vim.o.smartcase = true
 vim.o.mouse = "a"
 
 -- UI --
--- %l is number, %s is sign, %C is fold col
--- `%@SignCb@ ... %T`	Define a clickable region that calls SignCb() when clicked
--- define signColumn in statusColumn
--- should get set by plugin
+-- Window border for floats, and transparency
 vim.o.winborder = "none"
 vim.opt.winblend = 15
 vim.opt.pumblend = 15
-vim.o.signcolumn = "yes"
--- show line numbers in statusColumn
+
+-- Always show line numbers & space for signs
 vim.opt.number = true
+vim.o.signcolumn = "yes"
+--
 -- always show the status line for every window!
 vim.o.laststatus = 3
 vim.o.cmdheight = 0
+
 -- tries to put mode into statusline
 vim.o.showmode = false
 -- just a default status line for testing
-vim.o.statusline = "😃%<%f %h%w%m%r%=%-14.(%l,%c%V%) %P"
+vim.o.statusline = "💾%<%f %h%w%m%r%=%-14.(%l,%c%V%) %P"
 
 -- Save undo history
 vim.o.undofile = true
@@ -67,6 +67,7 @@ vim.diagnostic.config({
 	underline = true,
 	update_in_insert = false, -- Keep diagnostics active in insert mode
 })
+
 -- diagnostics and lsp stuff
 -- vim.o.completeopt = "menuone,popup,noinsert"
 -- Configure how new splits should be opened
@@ -89,6 +90,7 @@ vim.diagnostic.config({
 
 -- Show which line your cursor is on
 vim.o.cursorline = true
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 

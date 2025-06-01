@@ -35,7 +35,7 @@ function Plugin.config()
 		-- "typescript",
 		-- "python",
 		-- "go",
-		-- "bash",
+		"bash",
 		-- "diff",
 		-- "html",
 		-- "xml",

@@ -36,4 +36,5 @@ function Plugin.config()
 	require("mini.icons").setup({ style = "glyph" })
 end
 
-return Plugin
+-- return Plugin
+return {}

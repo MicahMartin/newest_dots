@@ -7,15 +7,15 @@ local config = {
   install = {
     missing = true,  -- install missing plugins on startup.
   },
-	-- ui = {
-  --   border = "rounded",
-	-- 	icons = {
-	-- 		ft = "",
-	-- 		lazy = "󰂠 ",
-	-- 		loaded = "",
-	-- 		not_loaded = "",
-	-- 	},
-	-- },
+	ui = {
+    border = "rounded",
+		icons = {
+			ft = "",
+			lazy = "󰂠 ",
+			loaded = "",
+			not_loaded = "",
+		},
+	},
 	performance = {
 		rtp = {
 			disabled_plugins = {

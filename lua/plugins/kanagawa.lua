@@ -15,14 +15,14 @@ function user.overrideFn(colors)
 
 		-- NormalFloat = { bg = "none" },
 		-- FloatTitle = { bg = "none" },
-
+		-- FloatBorder = { bg = "none" },
 		-- compare highlight groups
 		-- Pmenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-		-- PmenuSel = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
-		-- PmenuSbar = { bg = colors.theme.ui.bg_m1 },
-		-- PmenuThumb = { bg = colors.theme.ui.bg_p2 },
+    Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
+    PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+    PmenuSbar = { bg = theme.ui.bg_m1 },
+    PmenuThumb = { bg = theme.ui.bg_p2 },
 		-- NormalFloat = { bg = "none" },
-		-- FloatBorder = { bg = "none" },
 		-- FloatTitle = { bg = "none" },
 		-- EndOfBuffer:BlinkCmpDoc
 		-- Normal:BlinkCmpSignatureHelp
@@ -72,7 +72,7 @@ end
 local Plugin = { "rebelot/kanagawa.nvim" }
 
 Plugin.lazy = false
-Plugin.priority = 2000
+Plugin.priority = 1000
 
 function Plugin.config()
 	require("kanagawa").setup({
@@ -88,6 +88,11 @@ function Plugin.config()
 				},
 			},
 		},
+    theme = "wave",              -- Load "wave" theme
+    background = {               -- map the value of 'background' option to a theme
+        dark = "wave",           -- try "dragon" !
+        light = "lotus"
+    },
 		overrides = user.overrideFn,
 	})
 
