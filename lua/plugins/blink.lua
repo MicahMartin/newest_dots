@@ -21,10 +21,6 @@ Plugin.opts = {
 			draw = {
 				padding = { 0, 1 }, -- padding only on right side
 				treesitter = { "lsp" },
-				components = {
-					-- kind_icon = { text = user.textFn, highlight = user.highlightFn },
-					kind = { highlight = user.highlightFn },
-				},
 				columns = {
 					{ "label" },
 					{ "kind_icon", "kind" },
@@ -61,53 +57,6 @@ function user.transformFn(_, items)
 		return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
 	end, items)
 end
-
-user.o = {
-	signature = { enabled = true },
-	-- enabled = enabledFn,
-	cmdline = { enabled = false },
-	keymap = { preset = "enter" },
-	appearance = {
-		nerd_font_variant = "normal",
-	},
-	completion = {
-		menu = {
-			auto_show = true,
-			draw = {
-				treesitter = { "lsp" },
-				components = {
-					kind_icon = { text = textFn, highlight = highlightFn },
-					kind = { highlight = highlightFn },
-				},
-				columns = {
-					{ "kind_icon" },
-					{ "label", "label_description", gap = 1 },
-				},
-			},
-		},
-		keyword = { range = "full" },
-		accept = { auto_brackets = { enabled = true } },
-		list = { selection = { preselect = false, auto_insert = true } },
-		documentation = { auto_show = true, auto_show_delay_ms = 400 },
-		ghost_text = { enabled = true },
-	},
-	sources = {
-		default = { "lsp", "path", "snippets" },
-		-- providers = {
-		-- 	lsp = {
-		-- 		name = "LSP",
-		-- 		module = "blink.cmp.sources.lsp",
-		-- 		transform_items = transformFn,
-		-- 	},
-		-- 	path = { opts = {
-		-- 		get_cwd = function(_)
-		-- 			return vim.fn.getcwd()
-		-- 		end,
-		-- 	} },
-		-- },
-	},
-	fuzzy = { implementation = "prefer_rust" },
-}
 
 user.bDraw = {
 	columns = {

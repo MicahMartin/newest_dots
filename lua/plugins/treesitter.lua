@@ -38,6 +38,7 @@ function Plugin.config()
 		"bash",
 		-- "diff",
 		"html",
+		"regex",
 		-- "xml",
 		-- "rust",
 		-- "json",

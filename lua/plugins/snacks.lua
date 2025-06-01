@@ -4,14 +4,6 @@ local user = {}
 Plugin.lazy = false
 Plugin.priority = 1000
 
-Plugin.opts = {
-	indent = user.indentConf,
-	input = user.inputConf,
-	explorer = user.explorerConf,
-	picker = user.pickerConf,
-	notifier = { enabled = true },
-	statuscolumn = { enabled = true },
-}
 
 function Plugin.init()
 	vim.g.snacks_animate = false
@@ -344,5 +336,13 @@ user.pickerConf = {
 	},
 }
 
-return {}
--- return Plugin
+Plugin.opts = {
+	indent = user.indentConf,
+	input = user.inputConf,
+	explorer = user.explorerConf,
+	picker = user.pickerConf,
+	notifier = { enabled = true },
+	statuscolumn = { enabled = true },
+}
+
+return Plugin
