@@ -14,15 +14,13 @@ function user.overrideFn(colors)
 		DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
 
 		-- NormalFloat = { bg = "none" },
-		-- Normal:BlinkCmpDoc
-		-- FloatBorder:BlinkCmpDocBorder
 		-- FloatTitle = { bg = "none" },
 
 		-- compare highlight groups
-		Pmenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-		PmenuSel = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
-		PmenuSbar = { bg = colors.theme.ui.bg_m1 },
-		PmenuThumb = { bg = colors.theme.ui.bg_p2 },
+		-- Pmenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+		-- PmenuSel = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
+		-- PmenuSbar = { bg = colors.theme.ui.bg_m1 },
+		-- PmenuThumb = { bg = colors.theme.ui.bg_p2 },
 		-- NormalFloat = { bg = "none" },
 		-- FloatBorder = { bg = "none" },
 		-- FloatTitle = { bg = "none" },
@@ -34,40 +32,40 @@ function user.overrideFn(colors)
 		-- BlinkCmpScrollBarGutter = { bg = colors.theme.ui.bg_m1 },
 		-- BlinkCmpScrollBarThumb = { bg = colors.theme.ui.bg_p2 },
 		-- Snacks specific
-		SnacksIndent = { fg = theme.ui.bg_p2, nocombine = true },
-		SnacksIndentScope = { fg = theme.ui.pmenu.bg, nocombine = true },
-		SnacksInputIcon = { fg = theme.ui.pmenu.bg },
-		SnacksInputBorder = { fg = theme.syn.identifier },
-		SnacksInputTitle = { fg = theme.syn.identifier },
+		-- SnacksIndent = { fg = theme.ui.bg_p2, nocombine = true },
+		-- SnacksIndentScope = { fg = theme.ui.pmenu.bg, nocombine = true },
+		-- SnacksInputIcon = { fg = theme.ui.pmenu.bg },
+		-- SnacksInputBorder = { fg = theme.syn.identifier },
+		-- SnacksInputTitle = { fg = theme.syn.identifier },
 
-		SnacksPickerInputBorder = { fg = theme.syn.constant },
-		SnacksPickerInputTitle = { fg = theme.syn.constant },
-		SnacksPickerBoxTitle = { fg = theme.syn.constant },
-		SnacksPickerSelected = { fg = theme.syn.number },
-		SnacksPickerToggle = { link = "SnacksProfilerBadgeInfo" },
-		SnacksPickerPickWinCurrent = { fg = theme.ui.fg, bg = theme.syn.number, bold = true },
-		SnacksPickerPickWin = { fg = theme.ui.fg, bg = theme.ui.bg_search, bold = true },
+		-- SnacksPickerInputBorder = { fg = theme.syn.constant },
+		-- SnacksPickerInputTitle = { fg = theme.syn.constant },
+		-- SnacksPickerBoxTitle = { fg = theme.syn.constant },
+		-- SnacksPickerSelected = { fg = theme.syn.number },
+		-- SnacksPickerToggle = { link = "SnacksProfilerBadgeInfo" },
+		-- SnacksPickerPickWinCurrent = { fg = theme.ui.fg, bg = theme.syn.number, bold = true },
+		-- SnacksPickerPickWin = { fg = theme.ui.fg, bg = theme.ui.bg_search, bold = true },
 
-		SnacksNotifierBorderError = { link = "DiagnosticError" },
-		SnacksNotifierBorderWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierBorderInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierBorderDebug = { link = "Debug" },
-		SnacksNotifierBorderTrace = { link = "Comment" },
-		SnacksNotifierIconError = { link = "DiagnosticError" },
-		SnacksNotifierIconWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierIconInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierIconDebug = { link = "Debug" },
-		SnacksNotifierIconTrace = { link = "Comment" },
-		SnacksNotifierTitleError = { link = "DiagnosticError" },
-		SnacksNotifierTitleWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierTitleInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierTitleDebug = { link = "Debug" },
-		SnacksNotifierTitleTrace = { link = "Comment" },
-		SnacksNotifierError = { link = "DiagnosticError" },
-		SnacksNotifierWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierDebug = { link = "Debug" },
-		SnacksNotifierTrace = { link = "Comment" },
+		-- SnacksNotifierBorderError = { link = "DiagnosticError" },
+		-- SnacksNotifierBorderWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierBorderInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierBorderDebug = { link = "Debug" },
+		-- SnacksNotifierBorderTrace = { link = "Comment" },
+		-- SnacksNotifierIconError = { link = "DiagnosticError" },
+		-- SnacksNotifierIconWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierIconInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierIconDebug = { link = "Debug" },
+		-- SnacksNotifierIconTrace = { link = "Comment" },
+		-- SnacksNotifierTitleError = { link = "DiagnosticError" },
+		-- SnacksNotifierTitleWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierTitleInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierTitleDebug = { link = "Debug" },
+		-- SnacksNotifierTitleTrace = { link = "Comment" },
+		-- SnacksNotifierError = { link = "DiagnosticError" },
+		-- SnacksNotifierWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierDebug = { link = "Debug" },
+		-- SnacksNotifierTrace = { link = "Comment" },
 	}
 end
 
@@ -75,12 +73,12 @@ local Plugin = { "rebelot/kanagawa.nvim" }
 
 Plugin.lazy = false
 Plugin.priority = 2000
-Plugin.terminalColors = true
 
 function Plugin.config()
 	require("kanagawa").setup({
 		compile = true,
 		commentStyle = { italic = false },
+    terminalColors = true, 
 		colors = {
 			theme = {
 				all = {

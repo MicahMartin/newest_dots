@@ -22,26 +22,26 @@ function Plugin.config()
 	local treesitter = require("nvim-treesitter")
 	-- Parsers that should be on the system
 	local parsers = {
-		"c",
-		"cpp",
-		"javascript",
-		"typescript",
-		"python",
-		"go",
-		"bash",
-		"markdown",
-		"markdown_inline",
-		"diff",
-		"html",
+		"query",
 		"lua",
 		"luadoc",
 		"vim",
 		"vimdoc",
-		"xml",
-		"rust",
-		"json",
-		"java",
-		"query",
+		"markdown",
+		"markdown_inline",
+		"c",
+		-- "cpp",
+		-- "javascript",
+		-- "typescript",
+		-- "python",
+		-- "go",
+		-- "bash",
+		-- "diff",
+		-- "html",
+		-- "xml",
+		-- "rust",
+		-- "json",
+		-- "java",
 	}
 	-- enabled filetypes for treesitter
 	local filetypes = {
@@ -82,3 +82,4 @@ function Plugin.config()
 end
 
 return Plugin
+

@@ -1,7 +1,8 @@
 -- gotta do this for bob nvim
 vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/venv/bin/python")
--- lets try this instead
--- vim.opt.clipboard = ""
+-- space leader ftw
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
@@ -9,7 +10,7 @@ end)
 
 -- idk pretty sure we need this
 vim.g.have_nerd_font = true
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 
 -- TEXT STUFF --
 -- these 4 options should change <tab> to 2 spaces
@@ -28,7 +29,6 @@ vim.o.foldmethod = "expr"
 vim.o.wrap = false
 -- not sure what these do yet
 vim.opt.fillchars = { eob = " " }
-
 -- searching
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -47,6 +47,7 @@ vim.o.signcolumn = "yes"
 vim.opt.number = true
 -- always show the status line for every window!
 vim.o.laststatus = 3
+vim.o.cmdheight = 0
 -- tries to put mode into statusline
 vim.o.showmode = false
 -- just a default status line for testing

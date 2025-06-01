@@ -7,15 +7,15 @@ local config = {
   install = {
     missing = true,  -- install missing plugins on startup.
   },
-	ui = {
-    border = "rounded",
-		icons = {
-			ft = "",
-			lazy = "󰂠 ",
-			loaded = "",
-			not_loaded = "",
-		},
-	},
+	-- ui = {
+  --   border = "rounded",
+	-- 	icons = {
+	-- 		ft = "",
+	-- 		lazy = "󰂠 ",
+	-- 		loaded = "",
+	-- 		not_loaded = "",
+	-- 	},
+	-- },
 	performance = {
 		rtp = {
 			disabled_plugins = {
@@ -25,10 +25,10 @@ local config = {
 				"getscriptPlugin",
 				"gzip",
 				"logipat",
-				"netrw",
-				"netrwPlugin",
-				"netrwSettings",
-				"netrwFileHandlers",
+				-- "netrw",
+				-- "netrwPlugin",
+				-- "netrwSettings",
+				-- "netrwFileHandlers",
 				"matchit",
 				"tar",
 				"tarPlugin",
