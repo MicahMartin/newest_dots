@@ -133,5 +133,5 @@ user.cCompletion = {
 	documentation = { auto_show = false },
 }
 
-return {}
--- return Plugin
+-- return {}
+return Plugin
