@@ -1,14 +1,18 @@
-local Plugin = { "mason-org/mason-lspconfig.nvim" }
+local Plugin = { "williamboman/mason.nvim" }
 
 Plugin.lazy = false
 
 Plugin.dependencies = {
-	"neovim/nvim-lspconfig",
-	{ "mason-org/mason.nvim", opts = {} },
+	{ "nvim-lspconfig", lazy = false },
+	{ "williamboman/mason-lspconfig.nvim" },
 }
 
-Plugin.opts = {
-	ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "vtsls" },
-}
+function Plugin.config()
+	-- require("nvim-lspconfig").setup()
+	require("mason").setup({})
+	require("mason-lspconfig").setup({
+		ensure_installed = { "lua_ls", "rust_analyzer", "clangd", "vtsls", "bashls" },
+	})
+end
 
 return Plugin
