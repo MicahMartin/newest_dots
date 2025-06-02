@@ -1,6 +1,9 @@
 local M = { "folke/snacks.nvim" }
 local user = {}
 
+M.lazy = false
+M.priority = 1000
+
 function user.setKeys()
 	_G.dd = function(...)
 		Snacks.debug.inspect(...)
@@ -14,25 +17,21 @@ function user.setKeys()
 	Snacks.toggle.inlay_hints():map("<leader>uh")
 end
 
-M.lazy = false
-M.priority = 1000
-
 M.opts = {
-  indent = {
-    enabled = true,
-    char = "▏",
-    scope = { enabled = false },
-    -- only_scope = true,
-    chunk = { enabled = true, char = { vertial = "▏" } },
-  },
-  input = { enabled = true, icon = "❯" },
-  explorer = {
-    enabled = true,
-    replace_netrw = true,
-  },
-  picker = { enabled = true },
-  notifier = { enabled = true },
-  statuscolumn = { enabled = true },
+	indent = {
+		enabled = true,
+		char = "▏",
+		scope = { enabled = false },
+		chunk = { enabled = true, char = { vertial = "▏" } },
+	},
+	input = { enabled = true, icon = "❯" },
+	explorer = {
+		enabled = true,
+		replace_netrw = true,
+	},
+	picker = { enabled = true },
+	notifier = { enabled = true },
+	statuscolumn = { enabled = true },
 }
 
 function M.init()
@@ -222,6 +221,5 @@ M.keys = {
 		mode = { "n", "x" },
 	},
 }
-
 
 return M
