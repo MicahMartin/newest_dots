@@ -1,28 +1,13 @@
--- {
--- 	"mfussenegger/nvim-dap",
--- 	lazy = false,
--- 	dependencies = {
--- 		{
--- 			"rcarriga/nvim-dap-ui",
--- 			dependencies = {
--- 				"nvim-neotest/nvim-nio",
--- 			},
--- 		},
--- 		"theHamsta/nvim-dap-virtual-text",
--- 	},
--- 	config = function()
--- 		require("dapui").setup()
--- 	end,
--- },
 M = {
 	{
 		"mfussenegger/nvim-dap",
-		lazy = true,
-		-- Copied from LazyVim/lua/lazyvim/plugins/extras/dap/core.lua and
-		-- modified.
+		lazy = false,
+		dependencies = {
+			{ "igorlfs/nvim-dap-view", opts = {} },
+		},
 		keys = {
 			{
-				"<leader>db",
+				"<leader>ab",
 				function()
 					require("dap").toggle_breakpoint()
 				end,
@@ -30,7 +15,7 @@ M = {
 			},
 
 			{
-				"<leader>dc",
+				"<leader>ac",
 				function()
 					require("dap").continue()
 				end,
@@ -38,7 +23,7 @@ M = {
 			},
 
 			{
-				"<leader>dC",
+				"<leader>aC",
 				function()
 					require("dap").run_to_cursor()
 				end,
@@ -46,7 +31,7 @@ M = {
 			},
 
 			{
-				"<leader>dT",
+				"<leader>aT",
 				function()
 					require("dap").terminate()
 				end,
@@ -69,12 +54,10 @@ M = {
 			--	},
 			--},
 			-- DAP servers: Mason will be invoked to install these if necessary.
-			-- ensure_installed = {
-			-- 	"bash",
-			-- 	"codelldb",
-			-- 	"php",
-			-- 	"python",
-			-- },
+			ensure_installed = {
+				"codelldb",
+				--"python",
+			},
 		},
 		dependencies = {
 			"mfussenegger/nvim-dap",
@@ -86,26 +69,6 @@ M = {
 		config = true,
 		dependencies = {
 			"mfussenegger/nvim-dap",
-		},
-	},
-	{
-		"rcarriga/nvim-dap-ui",
-		config = true,
-		keys = {
-			{
-				"<leader>du",
-				function()
-					require("dapui").toggle({})
-				end,
-				desc = "Dap UI",
-			},
-		},
-		dependencies = {
-			"jay-babu/mason-nvim-dap.nvim",
-			-- "leoluz/nvim-dap-go",
-			-- "mfussenegger/nvim-dap-python",
-			"nvim-neotest/nvim-nio",
-			"theHamsta/nvim-dap-virtual-text",
 		},
 	},
 	{ "stevearc/overseer.nvim", opts = {} },

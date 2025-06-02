@@ -4,7 +4,7 @@ M.event = { "BufWritePre" }
 M.cmd = { "ConformInfo" }
 M.keys = {
 	{
-		"<leader>a",
+		"<leader>F",
 		function()
 			vim.notify("formatting")
 			require("conform").format({ async = true })

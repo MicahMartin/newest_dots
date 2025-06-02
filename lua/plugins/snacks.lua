@@ -82,7 +82,7 @@ end
 
 M.keys = {
 	{
-		"t",
+		"-",
 		desc = "File Explorer",
 		function()
 			local explorer_pickers = Snacks.picker.get({ source = "explorer" })
@@ -194,21 +194,21 @@ M.keys = {
 		desc = "LSP Workspace Symbols",
 	},
 	{
-		"gg",
+		"gd",
 		function()
 			Snacks.picker.lsp_definitions()
 		end,
 		desc = "Goto Definition",
 	},
 	{
-		"gd",
+		"gD",
 		function()
 			Snacks.picker.lsp_declarations()
 		end,
 		desc = "Goto Declaration",
 	},
 	{
-		"gr",
+		"gR",
 		function()
 			Snacks.picker.lsp_references()
 		end,
