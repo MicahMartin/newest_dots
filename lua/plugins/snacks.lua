@@ -29,7 +29,16 @@ M.opts = {
 		enabled = true,
 		replace_netrw = true,
 	},
-	picker = { enabled = true },
+	picker = {
+		enabled = true,
+		win = {
+			input = {
+				keys = {
+					["<c-x>"] = { "bufdelete", mode = { "i", "n" } },
+				},
+			},
+		},
+	},
 	notifier = { enabled = true },
 	statuscolumn = { enabled = true },
 }
@@ -65,14 +74,21 @@ M.keys = {
 		desc = "Recent Jumps",
 	},
 	{
-		"<C-f>",
+		"<C-d>",
 		function()
 			Snacks.picker.grep()
 		end,
 		desc = "Grep for words",
 	},
 	{
-		"<C-e>",
+		"<C-f>",
+		function()
+			Snacks.picker.buffers()
+		end,
+		desc = "Buffers",
+	},
+	{
+		"<C-r>",
 		function()
 			Snacks.picker.recent()
 		end,
@@ -100,26 +116,26 @@ M.keys = {
 		desc = "Show hotkeys",
 	},
 	{
-		"<C-d>",
+		"<C-e>",
 		function()
 			Snacks.picker.smart()
 		end,
 		desc = "Smart Find Files",
 	},
-	{
-		"<leader>x",
-		function()
-			Snacks.bufdelete()
-		end,
-		desc = "Delete Buffer",
-	},
-	{
-		"<leader>X",
-		function()
-			Snacks.bufdelete.all()
-		end,
-		desc = "Delete all Buffers",
-	},
+	-- {
+	-- 	"<leader>r",
+	-- 	function()
+	-- 		Snacks.bufdelete()
+	-- 	end,
+	-- 	desc = "Delete Buffer",
+	-- },
+	-- {
+	-- 	"<leader>X",
+	-- 	function()
+	-- 		Snacks.bufdelete.all()
+	-- 	end,
+	-- 	desc = "Delete all Buffers",
+	-- },
 	{
 		"<leader>n",
 		function()

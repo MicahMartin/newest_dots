@@ -31,7 +31,12 @@ vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" 
 -- vim.keymap.set("v", ">", ">gv", opts)
 
 -- LEADER COMMANDS
--- prevent x delete from registering when next paste
+-- Quit vim
+vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
+-- close all buffers but not vim
+vim.keymap.set("n", "<leader>x", ":%bd!<CR>", { noremap = true, silent = true })
+-- window controls prefix
+vim.keymap.set("n", "<leader>w", "<C-w>")
 vim.keymap.set("n", "x", '"_x', opts)
 
 -- Copy filepath to the clipboard
