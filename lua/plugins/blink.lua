@@ -13,7 +13,6 @@ function M.config()
       menu = { scrollbar = false, scrolloff = 1, draw = { treesitter = { 'lsp'  } } },
       list = { selection = { auto_insert = false } },
       documentation = { auto_show = true, window = { scrollbar = false } },
-
     }
   })
 end

@@ -20,10 +20,10 @@ function M.config()
 			},
 		},
     theme = "wave",
-    background = {
-      dark = "wave",
-      light = "lotus"
-    },
+    -- background = {
+    --   dark = "wave",
+    --   light = "lotus"
+    -- },
 		overrides = user.overrideFn,
 	})
 
@@ -44,51 +44,55 @@ function user.overrideFn(colors)
 		DiagnosticVirtualTextWarn = makeDiagnosticColor(theme.diag.warning),
 		DiagnosticVirtualTextError = makeDiagnosticColor(theme.diag.error),
 
+    -- NormalFloat = { bg = "none" },
+    -- FloatTitle = { bg = "none" },
+    -- FloatBorder = { bg = "none" },
+
     Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },  -- add `blend = vim.o.pumblend` to enable transparency
     PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
     PmenuSbar = { bg = theme.ui.bg_m1 },
     PmenuThumb = { bg = theme.ui.bg_p2 },
 
-		BlinkCmpMenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-		BlinkCmpMenuSelection = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
-		BlinkCmpScrollBarGutter = { bg = colors.theme.ui.bg_m1 },
-		BlinkCmpScrollBarThumb = { bg = colors.theme.ui.bg_p2 },
+		-- BlinkCmpMenu = { fg = colors.theme.ui.shade0, bg = colors.theme.ui.bg_p1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+		-- BlinkCmpMenuSelection = { fg = "NONE", bg = colors.theme.ui.bg_p2 },
+		-- BlinkCmpScrollBarGutter = { bg = colors.theme.ui.bg_m1 },
+		-- BlinkCmpScrollBarThumb = { bg = colors.theme.ui.bg_p2 },
 
 		-- Snacks specific
 		SnacksIndent = { fg = theme.ui.bg_p2, nocombine = true },
 		SnacksIndentScope = { fg = theme.ui.pmenu.bg, nocombine = true },
-		SnacksInputIcon = { fg = theme.ui.pmenu.bg },
-		SnacksInputBorder = { fg = theme.syn.identifier },
-		SnacksInputTitle = { fg = theme.syn.identifier },
+		-- SnacksInputIcon = { fg = theme.ui.pmenu.bg },
+		-- SnacksInputBorder = { fg = theme.syn.identifier },
+		-- SnacksInputTitle = { fg = theme.syn.identifier },
 
-		SnacksPickerInputBorder = { fg = theme.syn.constant },
-		SnacksPickerInputTitle = { fg = theme.syn.constant },
-		SnacksPickerBoxTitle = { fg = theme.syn.constant },
-		SnacksPickerSelected = { fg = theme.syn.number },
-		SnacksPickerToggle = { link = "SnacksProfilerBadgeInfo" },
-		SnacksPickerPickWinCurrent = { fg = theme.ui.fg, bg = theme.syn.number, bold = true },
-		SnacksPickerPickWin = { fg = theme.ui.fg, bg = theme.ui.bg_search, bold = true },
+		-- SnacksPickerInputBorder = { fg = theme.syn.constant },
+		-- SnacksPickerInputTitle = { fg = theme.syn.constant },
+		-- SnacksPickerBoxTitle = { fg = theme.syn.constant },
+		-- SnacksPickerSelected = { fg = theme.syn.number },
+		-- SnacksPickerToggle = { link = "SnacksProfilerBadgeInfo" },
+		-- SnacksPickerPickWinCurrent = { fg = theme.ui.fg, bg = theme.syn.number, bold = true },
+		-- SnacksPickerPickWin = { fg = theme.ui.fg, bg = theme.ui.bg_search, bold = true },
 
-		SnacksNotifierBorderError = { link = "DiagnosticError" },
-		SnacksNotifierBorderWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierBorderInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierBorderDebug = { link = "Debug" },
-		SnacksNotifierBorderTrace = { link = "Comment" },
-		SnacksNotifierIconError = { link = "DiagnosticError" },
-		SnacksNotifierIconWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierIconInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierIconDebug = { link = "Debug" },
-		SnacksNotifierIconTrace = { link = "Comment" },
-		SnacksNotifierTitleError = { link = "DiagnosticError" },
-		SnacksNotifierTitleWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierTitleInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierTitleDebug = { link = "Debug" },
-		SnacksNotifierTitleTrace = { link = "Comment" },
-		SnacksNotifierError = { link = "DiagnosticError" },
-		SnacksNotifierWarn = { link = "DiagnosticWarn" },
-		SnacksNotifierInfo = { link = "DiagnosticInfo" },
-		SnacksNotifierDebug = { link = "Debug" },
-		SnacksNotifierTrace = { link = "Comment" },
+		-- SnacksNotifierBorderError = { link = "DiagnosticError" },
+		-- SnacksNotifierBorderWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierBorderInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierBorderDebug = { link = "Debug" },
+		-- SnacksNotifierBorderTrace = { link = "Comment" },
+		-- SnacksNotifierIconError = { link = "DiagnosticError" },
+		-- SnacksNotifierIconWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierIconInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierIconDebug = { link = "Debug" },
+		-- SnacksNotifierIconTrace = { link = "Comment" },
+		-- SnacksNotifierTitleError = { link = "DiagnosticError" },
+		-- SnacksNotifierTitleWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierTitleInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierTitleDebug = { link = "Debug" },
+		-- SnacksNotifierTitleTrace = { link = "Comment" },
+		-- SnacksNotifierError = { link = "DiagnosticError" },
+		-- SnacksNotifierWarn = { link = "DiagnosticWarn" },
+		-- SnacksNotifierInfo = { link = "DiagnosticInfo" },
+		-- SnacksNotifierDebug = { link = "Debug" },
+		-- SnacksNotifierTrace = { link = "Comment" },
 	}
 end
 

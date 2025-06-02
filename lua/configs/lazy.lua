@@ -8,7 +8,7 @@ local config = {
     missing = true,  -- install missing plugins on startup.
   },
 	ui = {
-    -- border = "rounded",
+    border = "rounded",
 		icons = {
 			ft = "",
 			lazy = "󰂠 ",
