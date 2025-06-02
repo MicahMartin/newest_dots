@@ -11,6 +11,7 @@ function user.setKeys()
 	_G.bt = function()
 		Snacks.debug.backtrace()
 	end
+	vim.notify_once("setting the keys")
 	vim.print = _G.dd
 
 	Snacks.toggle.line_number():map("<leader>ul")
@@ -69,9 +70,9 @@ M.keys = {
 	{
 		"<C-t>",
 		function()
-			Snacks.picker.jumps()
+			Snacks.picker.marks()
 		end,
-		desc = "Recent Jumps",
+		desc = "Show marks",
 	},
 	{
 		"<C-d>",
