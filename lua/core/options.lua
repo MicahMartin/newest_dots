@@ -8,7 +8,7 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
-vim.o.foldlevel = 1
+vim.o.foldlevel = 2
 vim.o.foldmethod = "expr"
 vim.o.wrap = true
 vim.opt.fillchars = { eob = " " }
@@ -32,7 +32,9 @@ vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.scrolloff = 10
 
-vim.schedule(function() vim.o.clipboard = "unnamedplus" end)
+vim.schedule(function()
+	vim.o.clipboard = "unnamedplus"
+end)
 
 vim.diagnostic.config({
 	virtual_text = { current_line = true }, -- Specify Enable virtual text for diagnostics

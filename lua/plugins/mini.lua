@@ -26,13 +26,13 @@ function M.config()
 	require("mini.pairs").setup({})
 
 	require("mini.ai").setup({ n_lines = 500 })
+	require("mini.statusline").setup({})
+
+	require("mini.move").setup({})
+	--
+	require("mini.operators").setup({})
 
 	-- require("mini.splitjoin").setup({})
-
-	--require('mini.move').setup({})
-	--
-	-- require("mini.operators").setup({})
-
 	-- require("mini.icons").setup({ style = "glyph" })
 end
 
