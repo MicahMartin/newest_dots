@@ -26,7 +26,7 @@ function M.config()
 	require("mini.pairs").setup({})
 
 	require("mini.ai").setup({ n_lines = 500 })
-	require("mini.statusline").setup({})
+	-- require("mini.statusline").setup({})
 
 	require("mini.move").setup({})
 	--
