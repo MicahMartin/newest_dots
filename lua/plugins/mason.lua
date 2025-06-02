@@ -1,7 +1,6 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		lazy = false,
 		opts = {
 			ui = {
 				icons = {
@@ -14,7 +13,6 @@ return {
 	},
 	{
 		"mason-org/mason-lspconfig.nvim",
-		lazy = false,
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"mason-org/mason.nvim",
@@ -24,6 +22,7 @@ return {
 				"lua_ls",
 				"html",
 				"pyrefly",
+				"clangd",
 			},
 		},
 	},

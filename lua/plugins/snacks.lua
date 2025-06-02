@@ -3,6 +3,9 @@ local user = {}
 
 M.lazy = false
 M.priority = 1000
+M.dependencies = {
+	{ "nvim-tree/nvim-web-devicons" },
+}
 
 function user.setKeys()
 	_G.dd = function(...)
@@ -11,7 +14,6 @@ function user.setKeys()
 	_G.bt = function()
 		Snacks.debug.backtrace()
 	end
-	vim.notify_once("setting the keys")
 	vim.print = _G.dd
 
 	Snacks.toggle.line_number():map("<leader>ul")
@@ -52,6 +54,31 @@ function M.init()
 	})
 end
 
+function M.config(_, opts)
+	require("snacks").setup(opts)
+	Snacks.util.icon = function(name, cat, opts)
+		opts = opts or {}
+		opts.fallback = opts.fallback or {}
+		if cat == "directory" then
+			return opts.fallback.dir or "󰉋 ", "Directory"
+		end
+		local Icons = require("nvim-web-devicons")
+		local icon, hl ---@type string?, string?
+		if cat == "filetype" then
+			icon, hl = Icons.get_icon_by_filetype(name, { default = false })
+		elseif cat == "file" then
+			local ext = name:match("%.(%w+)$")
+			icon, hl = Icons.get_icon(name, ext, { default = false })
+		elseif cat == "extension" then
+			icon, hl = Icons.get_icon(nil, name, { default = false })
+		end
+		if icon then
+			return icon, hl
+		end
+		return opts.fallback.file or icon_fallback_file
+	end
+end
+
 M.keys = {
 	{
 		"t",
@@ -68,7 +95,7 @@ M.keys = {
 		end,
 	},
 	{
-		"<C-t>",
+		"<C-m>",
 		function()
 			Snacks.picker.marks()
 		end,
@@ -89,7 +116,7 @@ M.keys = {
 		desc = "Buffers",
 	},
 	{
-		"<C-r>",
+		"<C-t>",
 		function()
 			Snacks.picker.recent()
 		end,
@@ -219,6 +246,13 @@ M.keys = {
 		"<leader>d",
 		function()
 			Snacks.picker.diagnostics_buffer()
+		end,
+		desc = "Diagnostics",
+	},
+	{
+		"<leader>@",
+		function()
+			Snacks.picker.icons()
 		end,
 		desc = "Diagnostics",
 	},
