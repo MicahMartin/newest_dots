@@ -38,6 +38,7 @@ M.opts = {
 			input = {
 				keys = {
 					["<c-x>"] = { "bufdelete", mode = { "i", "n" } },
+					["<c-c>"] = { "close", mode = { "n", "i" } },
 				},
 			},
 		},
@@ -102,14 +103,14 @@ M.keys = {
 		desc = "Show marks",
 	},
 	{
-		"<C-d>",
+		"<C-f>",
 		function()
 			Snacks.picker.grep()
 		end,
 		desc = "Grep for words",
 	},
 	{
-		"<C-f>",
+		"<C-d>",
 		function()
 			Snacks.picker.buffers()
 		end,
@@ -193,14 +194,14 @@ M.keys = {
 		desc = "LSP Workspace Symbols",
 	},
 	{
-		"gd",
+		"gg",
 		function()
 			Snacks.picker.lsp_definitions()
 		end,
 		desc = "Goto Definition",
 	},
 	{
-		"gD",
+		"gd",
 		function()
 			Snacks.picker.lsp_declarations()
 		end,
@@ -215,14 +216,14 @@ M.keys = {
 		desc = "References",
 	},
 	{
-		"gI",
+		"gi",
 		function()
 			Snacks.picker.lsp_implementations()
 		end,
 		desc = "Goto Implementation",
 	},
 	{
-		"gy",
+		"gt",
 		function()
 			Snacks.picker.lsp_type_definitions()
 		end,
@@ -243,7 +244,7 @@ M.keys = {
 		desc = "Locationfix List",
 	},
 	{
-		"<leader>d",
+		"<leader>e",
 		function()
 			Snacks.picker.diagnostics_buffer()
 		end,
@@ -254,7 +255,7 @@ M.keys = {
 		function()
 			Snacks.picker.icons()
 		end,
-		desc = "Diagnostics",
+		desc = "Icon keyboard",
 	},
 	{
 		"<leader>D",
