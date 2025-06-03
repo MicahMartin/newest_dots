@@ -60,12 +60,18 @@ end, { desc = "{USER}Perform code action" })
 -- 		underline = isLspDiagnosticsVisible,
 -- 	})
 -- end, { desc = "Toggle LSP diagnostics" })
+-- vim.keymap.set("n", "<leader>p", ":DapViewOpen<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>p", function()
+	require("dapui").toggle()
+end, { desc = "dap ui toggle" })
+
 vim.keymap.set("n", "<leader>o", ":ObserverOpen<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>o", function()
 	local overseer = require("overseer")
 	overseer.run_template({}, function(task)
 		if task then
-			overseer.open({ enter = false })
+			overseer.open({ direction = "right", enter = false })
 		end
 	end)
 end, { desc = "Overseer commands" })

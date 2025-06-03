@@ -2,36 +2,24 @@ M = {
 	{
 		"mfussenegger/nvim-dap",
 		lazy = false,
-		dependencies = {
-			{ "igorlfs/nvim-dap-view", opts = {} },
-		},
+		dependencies = {},
 		keys = {
 			{
-				"<leader>ab",
-				function()
-					require("dap").toggle_breakpoint()
-				end,
-				desc = "Toggle Breakpoint",
-			},
-
-			{
-				"<leader>ac",
+				"<leader>ag",
 				function()
 					require("dap").continue()
 				end,
 				desc = "Continue",
 			},
-
 			{
-				"<leader>aC",
+				"<leader>aG",
 				function()
 					require("dap").run_to_cursor()
 				end,
 				desc = "Run to Cursor",
 			},
-
 			{
-				"<leader>aT",
+				"<leader>aF",
 				function()
 					require("dap").terminate()
 				end,
@@ -39,6 +27,63 @@ M = {
 			},
 		},
 	},
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		config = function()
+			local dap = require("dap")
+			local dapui = require("dapui").setup({})
+			dap.listeners.before.attach.dapui_config = function()
+				dapui.open()
+			end
+			-- dap.listeners.before.launch.dapui_config = function()
+			-- 	dapui.open()
+			-- end
+			dap.listeners.before.event_terminated.dapui_config = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited.dapui_config = function()
+				dapui.close()
+			end
+		end,
+		endopts = {},
+	},
+	{
+		"Weissle/persistent-breakpoints.nvim",
+		config = function()
+			require("persistent-breakpoints").setup({
+				load_breakpoints_event = { "BufReadPost" },
+			})
+			local opts = { noremap = true, silent = true }
+			local keymap = vim.api.nvim_set_keymap
+			-- Save breakpoints to file automatically.
+			keymap(
+				"n",
+				"<leader>ad",
+				"<cmd>lua require('persistent-breakpoints.api').toggle_breakpoint()<cr>",
+				vim.tbl_extend("force", opts, { desc = "Toggle breakpoint on/off" })
+			)
+			keymap(
+				"n",
+				"<leader>ac",
+				"<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>",
+				vim.tbl_extend("force", opts, { desc = "Set Conditional breakpoint" })
+			)
+			keymap(
+				"n",
+				"<leader>aL",
+				"<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",
+				opts
+			)
+			keymap(
+				"n",
+				"<leader>as",
+				"<cmd>lua require('persistent-breakpoints.api').set_log_point()<cr>",
+				vim.tbl_extend("force", opts, { desc = "Set Log Point" })
+			)
+		end,
+	},
+
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		---@type MasonNvimDapSettings
@@ -71,7 +116,10 @@ M = {
 			"mfussenegger/nvim-dap",
 		},
 	},
-	{ "stevearc/overseer.nvim", opts = {} },
+	{
+		"stevearc/overseer.nvim",
+		opts = {},
+	},
 	{ "catgoose/nvim-colorizer.lua", event = "BufReadPre", opts = {} },
 	{ "folke/which-key.nvim", event = "VeryLazy", opts = {} },
 	{ "neovim/nvim-lspconfig", lazy = false },
