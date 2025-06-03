@@ -6,8 +6,6 @@ vim.keymap.set("n", "<C-g>", "<Nop>", { noremap = true, silent = true })
 -- Unbind in visual mode too
 vim.keymap.set("v", "<C-g>", "<Nop>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "t", ",", { noremap = true, silent = true })
-
 -- unbind s and S, we need those for surround
 vim.keymap.set("n", "s", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "S", "<Nop>", { noremap = true, silent = true })
@@ -23,7 +21,7 @@ vim.keymap.set("n", "<leader>wU", "<cmd>vertical resize -6 <cr>", { desc = "Quic
 vim.keymap.set("n", "<leader>wd", "<cmd> resize +6 <cr>", { desc = "Quick vert increase" })
 vim.keymap.set("n", "<leader>wD", "<cmd> resize -6 <cr>", { desc = "Quick vert decrease" })
 
-vim.keymap.set("n", ",", "'", { desc = "Remap of mark jump prefix" })
+vim.keymap.set("n", "t", "'", { desc = "Remap of mark jump prefix" })
 
 -- General controls
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })

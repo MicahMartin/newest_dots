@@ -5,14 +5,35 @@ M = {
 		dependencies = {},
 		keys = {
 			{
-				"<leader>ag",
+				"<leader>an",
 				function()
 					require("dap").continue()
 				end,
 				desc = "Continue",
 			},
 			{
-				"<leader>aG",
+				"<leader>ao",
+				function()
+					require("dap").continue()
+				end,
+				desc = "step over",
+			},
+			{
+				"<leader>ai",
+				function()
+					require("dap").continue()
+				end,
+				desc = "step into",
+			},
+			{
+				"<leader>ab",
+				function()
+					require("dap").continue()
+				end,
+				desc = "step back",
+			},
+			{
+				"<leader>ag",
 				function()
 					require("dap").run_to_cursor()
 				end,
@@ -22,6 +43,20 @@ M = {
 				"<leader>aF",
 				function()
 					require("dap").terminate()
+				end,
+				desc = "Terminate",
+			},
+			{
+				"<leader>aR",
+				function()
+					require("dap").restart()
+				end,
+				desc = "Terminate",
+			},
+			{
+				"<leader>ak",
+				function()
+					require("dapui").eval(nil, { enter = true })
 				end,
 				desc = "Terminate",
 			},
