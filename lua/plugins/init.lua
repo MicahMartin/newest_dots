@@ -1,7 +1,7 @@
 M = {
+  { "neovim/nvim-lspconfig", lazy = false },
   {
     "mfussenegger/nvim-dap",
-    lazy = false,
     dependencies = {},
     keys = {
       {
@@ -155,8 +155,9 @@ M = {
   },
   { "catgoose/nvim-colorizer.lua", event = "BufReadPre", opts = {} },
   { "folke/which-key.nvim", event = "VeryLazy", opts = {} },
-  { "neovim/nvim-lspconfig", lazy = false },
   { "jay-babu/mason-nvim-dap.nvim" },
+
+  { "rafamadriz/friendly-snippets" },
 }
 
 return M

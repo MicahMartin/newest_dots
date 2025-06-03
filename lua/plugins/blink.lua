@@ -1,6 +1,7 @@
 local M = { "saghen/blink.cmp" }
 
-M.version = "1.*"
+M.branch = "main"
+M.build = "cargo build --release"
 M.dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" }
 M.lazy = false
 

@@ -9,7 +9,8 @@ return {
     local lint = require("lint")
     lint.linters_by_ft = {
       lua = { "selene" },
-      cpp = { "cpplint" },
+      -- cpp = { "cpplint" },
+      -- h = { "cpplint" },
       python = { "ruff" },
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
