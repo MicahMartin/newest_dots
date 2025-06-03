@@ -48,7 +48,7 @@ end, { desc = "Copy file path to clipboard" })
 
 -- Toggle LSP diagnostics visibility
 -- Code action
-vim.keymap.set("n", "gk", function()
+vim.keymap.set("n", "<leader>k", function()
 	vim.lsp.buf.code_action()
 end, { desc = "{USER}Perform code action" })
 
@@ -60,3 +60,12 @@ end, { desc = "{USER}Perform code action" })
 -- 		underline = isLspDiagnosticsVisible,
 -- 	})
 -- end, { desc = "Toggle LSP diagnostics" })
+vim.keymap.set("n", "<leader>o", ":ObserverOpen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>o", function()
+	local overseer = require("overseer")
+	overseer.run_template({}, function(task)
+		if task then
+			overseer.open({ enter = false })
+		end
+	end)
+end, { desc = "Overseer commands" })
