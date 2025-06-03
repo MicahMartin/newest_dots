@@ -6,6 +6,8 @@ vim.keymap.set("n", "<C-g>", "<Nop>", { noremap = true, silent = true })
 -- Unbind in visual mode too
 vim.keymap.set("v", "<C-g>", "<Nop>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "t", ",", { noremap = true, silent = true })
+
 -- unbind s and S, we need those for surround
 vim.keymap.set("n", "s", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "S", "<Nop>", { noremap = true, silent = true })
@@ -137,7 +139,7 @@ vim.keymap.set("n", "<leader>o", function()
 	local overseer = require("overseer")
 	overseer.run_template({}, function(task)
 		if task then
-			overseer.open({ direction = "right", enter = false })
+			overseer.open({ enter = true })
 		end
 	end)
 end, { desc = "Overseer commands" })
