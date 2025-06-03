@@ -33,3 +33,20 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "BufNewFile" }, {
     require("lint").try_lint()
   end,
 })
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "BlinkCmpAccept",
+  callback = function(ev)
+    local item = ev.data.item
+    if item.kind == require("blink.cmp.types").CompletionItemKind.Function then
+      vim.defer_fn(function()
+        require("blink.cmp").show_signature()
+      end, 10)
+    end
+    if item.kind == require("blink.cmp.types").CompletionItemKind.Snippet then
+      vim.defer_fn(function()
+        require("blink.cmp").show()
+      end, 10)
+    end
+  end,
+})
