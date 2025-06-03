@@ -17,12 +17,19 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
 })
 
 vim.api.nvim_create_augroup("lint", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePre", "InsertLeave" }, {
-  desc = "Format & Lint autocommand",
+
+vim.api.nvim_create_autocmd({ "BufWritePre", "BufReadPost", "BufNewFile" }, {
   group = "lint",
-  pattern = { "*.c", "*.cpp", "*.h", "*.py", "*.lua", "*.ts", "*.tsx", "*.jsx", "*.css", "*.scss", "*.md" },
+  pattern = "*",
   callback = function(args)
     require("conform").format({ bufnr = args.buf })
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "BufNewFile" }, {
+  group = "lint",
+  pattern = "*",
+  callback = function()
     require("lint").try_lint()
   end,
 })
