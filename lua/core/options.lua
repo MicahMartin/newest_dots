@@ -33,11 +33,11 @@ vim.o.timeoutlen = 300
 vim.o.scrolloff = 10
 
 vim.schedule(function()
-	vim.o.clipboard = "unnamedplus"
+  vim.o.clipboard = "unnamedplus"
 end)
 
 vim.diagnostic.config({
-	virtual_text = { current_line = true }, -- Specify Enable virtual text for diagnostics
-	underline = true,
-	update_in_insert = false, -- Keep diagnostics active in insert mode
+  virtual_text = { current_line = true }, -- Specify Enable virtual text for diagnostics
+  underline = true,
+  update_in_insert = false, -- Keep diagnostics active in insert mode
 })

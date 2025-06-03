@@ -1,6 +1,12 @@
-local opts = { noremap = true, silent = true }
+local utils = require("core.utils")
 
--- Unbind Ctrl+g since we use that for terminal
+vim.api.nvim_create_user_command("Vr", function()
+  utils.prompt_resize("vertical")
+end, { nargs = "?" })
+vim.api.nvim_create_user_command("Hr", function()
+  utils.prompt_resize("horizontal")
+end, { nargs = "?" })
+
 vim.keymap.set("n", "<C-g>", "<Nop>", { noremap = true, silent = true })
 
 -- Unbind in visual mode too
@@ -29,63 +35,63 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 -- Resizes
 vim.api.nvim_create_user_command("Vr", function()
-	local usage = "Usage: :Vr {number (1–100)}"
+  local usage = "Usage: :Vr {number (1–100)}"
 
-	vim.ui.input({ prompt = "Vertical resize (%): " }, function(input)
-		-- If the user canceled or submitted an empty string, show usage and return
-		if not input or input == "" then
-			vim.notify(usage, vim.log.levels.WARN)
-			return
-		end
+  vim.ui.input({ prompt = "Vertical resize (%): " }, function(input)
+    -- If the user canceled or submitted an empty string, show usage and return
+    if not input or input == "" then
+      vim.notify(usage, vim.log.levels.WARN)
+      return
+    end
 
-		local pct = tonumber(input)
-		if not pct then
-			vim.notify("Not a valid number: " .. input, vim.log.levels.ERROR)
-			return
-		end
+    local pct = tonumber(input)
+    if not pct then
+      vim.notify("Not a valid number: " .. input, vim.log.levels.ERROR)
+      return
+    end
 
-		if pct <= 0 or pct > 100 then
-			vim.notify("Percentage must be between 1 and 100", vim.log.levels.ERROR)
-			return
-		end
+    if pct <= 0 or pct > 100 then
+      vim.notify("Percentage must be between 1 and 100", vim.log.levels.ERROR)
+      return
+    end
 
-		-- Compute new width as total columns * (pct / 100)
-		local total_cols = vim.opt.columns:get()
-		local new_width = math.floor(total_cols * (pct / 100.0))
-		vim.notify_once("new width: " .. new_width)
+    -- Compute new width as total columns * (pct / 100)
+    local total_cols = vim.opt.columns:get()
+    local new_width = math.floor(total_cols * (pct / 100.0))
+    vim.notify_once("new width: " .. new_width)
 
-		vim.cmd("vertical resize " .. new_width)
-	end)
+    vim.cmd("vertical resize " .. new_width)
+  end)
 end, { nargs = "?" })
 
 vim.api.nvim_create_user_command("Hr", function()
-	local usage = "Usage: :Hr {number (1–100)}"
+  local usage = "Usage: :Hr {number (1–100)}"
 
-	vim.ui.input({ prompt = "horizontal resize (%): " }, function(input)
-		-- If the user canceled or submitted an empty string, show usage and return
-		if not input or input == "" then
-			vim.notify(usage, vim.log.levels.WARN)
-			return
-		end
+  vim.ui.input({ prompt = "horizontal resize (%): " }, function(input)
+    -- If the user canceled or submitted an empty string, show usage and return
+    if not input or input == "" then
+      vim.notify(usage, vim.log.levels.WARN)
+      return
+    end
 
-		local pct = tonumber(input)
-		if not pct then
-			vim.notify("Not a valid number: " .. input, vim.log.levels.ERROR)
-			return
-		end
+    local pct = tonumber(input)
+    if not pct then
+      vim.notify("Not a valid number: " .. input, vim.log.levels.ERROR)
+      return
+    end
 
-		if pct <= 0 or pct > 100 then
-			vim.notify("Percentage must be between 1 and 100", vim.log.levels.ERROR)
-			return
-		end
+    if pct <= 0 or pct > 100 then
+      vim.notify("Percentage must be between 1 and 100", vim.log.levels.ERROR)
+      return
+    end
 
-		-- Compute new height as total rows * (pct / 100)
-		local total_rows = vim.opt.lines:get() - vim.opt.cmdheight:get()
-		local new_height = math.floor(total_rows * (pct / 100.0))
-		vim.notify_once("new height: " .. new_height)
+    -- Compute new height as total rows * (pct / 100)
+    local total_rows = vim.opt.lines:get() - vim.opt.cmdheight:get()
+    local new_height = math.floor(total_rows * (pct / 100.0))
+    vim.notify_once("new height: " .. new_height)
 
-		vim.cmd("resize " .. new_height)
-	end)
+    vim.cmd("resize " .. new_height)
+  end)
 end, { nargs = "?" })
 
 vim.keymap.set("n", "<leader>w.", "<cmd>Hr<cr>", { desc = "Resize horizontal percent" })
@@ -103,19 +109,17 @@ vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>x", ":%bd!<CR>", { noremap = true, silent = true })
 -- window controls prefix
 vim.keymap.set("n", "<leader>w", "<C-w>")
-vim.keymap.set("n", "x", '"_x', opts)
-
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()
-	local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
-	vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
-	print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
+  local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
+  vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
+  print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 end, { desc = "Copy file path to clipboard" })
 
 -- Toggle LSP diagnostics visibility
 -- Code action
 vim.keymap.set("n", "<leader>k", function()
-	vim.lsp.buf.code_action()
+  vim.lsp.buf.code_action()
 end, { desc = "{USER}Perform code action" })
 
 -- local isLspDiagnosticsVisible = true
@@ -129,15 +133,24 @@ end, { desc = "{USER}Perform code action" })
 -- vim.keymap.set("n", "<leader>p", ":DapViewOpen<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>p", function()
-	require("dapui").toggle()
+  require("dapui").toggle()
 end, { desc = "dap ui toggle" })
 
-vim.keymap.set("n", "<leader>o", ":ObserverOpen<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>O", ":OverseerToggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>o", function()
-	local overseer = require("overseer")
-	overseer.run_template({}, function(task)
-		if task then
-			overseer.open({ enter = true })
-		end
-	end)
+  local overseer = require("overseer")
+  overseer.run_template({}, function(task)
+    if task then
+      overseer.open({ enter = true })
+    end
+  end)
 end, { desc = "Overseer commands" })
+
+vim.keymap.set("n", "<leader>F", function(args)
+  local conform = require("conform")
+  local lint = require("lint")
+
+  vim.notify("formatting & linting")
+  require("conform").format({ async = true })
+  require("lint").try_lint()
+end, { desc = "Format & Lint" })

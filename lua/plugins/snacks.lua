@@ -14,7 +14,7 @@ function user.setKeys()
 	_G.bt = function()
 		Snacks.debug.backtrace()
 	end
-	vim.print = _G.dd
+	-- vim.print = _G.dd
 
 	Snacks.toggle.line_number():map("<leader>ul")
 	Snacks.toggle.inlay_hints():map("<leader>uh")
