@@ -3,6 +3,7 @@ local utils = require("core.utils")
 vim.api.nvim_create_user_command("Vr", function()
   utils.prompt_resize("vertical")
 end, { nargs = "?" })
+
 vim.api.nvim_create_user_command("Hr", function()
   utils.prompt_resize("horizontal")
 end, { nargs = "?" })
@@ -34,66 +35,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights"
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 -- Resizes
-vim.api.nvim_create_user_command("Vr", function()
-  local usage = "Usage: :Vr {number (1–100)}"
-
-  vim.ui.input({ prompt = "Vertical resize (%): " }, function(input)
-    -- If the user canceled or submitted an empty string, show usage and return
-    if not input or input == "" then
-      vim.notify(usage, vim.log.levels.WARN)
-      return
-    end
-
-    local pct = tonumber(input)
-    if not pct then
-      vim.notify("Not a valid number: " .. input, vim.log.levels.ERROR)
-      return
-    end
-
-    if pct <= 0 or pct > 100 then
-      vim.notify("Percentage must be between 1 and 100", vim.log.levels.ERROR)
-      return
-    end
-
-    -- Compute new width as total columns * (pct / 100)
-    local total_cols = vim.opt.columns:get()
-    local new_width = math.floor(total_cols * (pct / 100.0))
-    vim.notify_once("new width: " .. new_width)
-
-    vim.cmd("vertical resize " .. new_width)
-  end)
-end, { nargs = "?" })
-
-vim.api.nvim_create_user_command("Hr", function()
-  local usage = "Usage: :Hr {number (1–100)}"
-
-  vim.ui.input({ prompt = "horizontal resize (%): " }, function(input)
-    -- If the user canceled or submitted an empty string, show usage and return
-    if not input or input == "" then
-      vim.notify(usage, vim.log.levels.WARN)
-      return
-    end
-
-    local pct = tonumber(input)
-    if not pct then
-      vim.notify("Not a valid number: " .. input, vim.log.levels.ERROR)
-      return
-    end
-
-    if pct <= 0 or pct > 100 then
-      vim.notify("Percentage must be between 1 and 100", vim.log.levels.ERROR)
-      return
-    end
-
-    -- Compute new height as total rows * (pct / 100)
-    local total_rows = vim.opt.lines:get() - vim.opt.cmdheight:get()
-    local new_height = math.floor(total_rows * (pct / 100.0))
-    vim.notify_once("new height: " .. new_height)
-
-    vim.cmd("resize " .. new_height)
-  end)
-end, { nargs = "?" })
-
 vim.keymap.set("n", "<leader>w.", "<cmd>Hr<cr>", { desc = "Resize horizontal percent" })
 vim.keymap.set("n", "<leader>w,", "<cmd>Vr<cr>", { desc = "Resize vert percent" })
 -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -154,3 +95,31 @@ vim.keymap.set("n", "<leader>F", function(args)
   require("conform").format({ async = true })
   require("lint").try_lint()
 end, { desc = "Format & Lint" })
+
+vim.keymap.set("n", "<leader>fh", function()
+  vim.lsp.buf_request(0, "textDocument/switchSourceHeader", { uri = vim.uri_from_bufnr(0) }, function(err, result)
+    if result then
+      vim.cmd("edit " .. vim.uri_to_fname(result))
+    else
+      vim.notify_once("No match or error")
+    end
+  end)
+end, { desc = "Go to header" })
+
+-- Minimal: <leader>cm shows member names of the class under cursor
+
+vim.keymap.set("n", "<leader>fr", function()
+  vim.lsp.buf.rename()
+end, { desc = "Global Rename" })
+
+vim.keymap.set("n", "<C-b>", function()
+  vim.lsp.buf.signature_help()
+end, { desc = "Signature help" })
+
+-- vim.keymap.set("n", "<leader>gR", { desc = "LSP Rename" }, function()
+--   vim.lsp.buf.rename()
+-- end)
+--
+-- vim.keymap.set("n", "<leader>gR", { desc = "LSP Rename" }, function()
+--   vim.lsp.buf.signature_help()
+-- end, vim.tbl_deep_extend("force"))

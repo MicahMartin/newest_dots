@@ -1,4 +1,5 @@
 M = {
+  { "github/copilot.vim", lazy = false },
   { "neovim/nvim-lspconfig", lazy = false },
   {
     "mfussenegger/nvim-dap",

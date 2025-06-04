@@ -6,29 +6,35 @@ M.dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" }
 M.lazy = false
 
 function M.config()
+  require("luasnip.loaders.from_vscode").lazy_load()
+  -- triggerCharacters = { ".", "<", ">", ":", '"', "/", "*" }
   require("blink.cmp").setup({
     snippets = { preset = "luasnip" },
     fuzzy = { implementation = "rust" },
     keymap = {
       preset = "none",
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-n>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<C-b>"] = { "show_signature", "hide_signature", "fallback" },
       ["<Tab>"] = { "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
       ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
       ["<C-j>"] = { "select_next", "fallback_to_mappings" },
-      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-      ["<CR>"] = { "select_and_accept", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
     },
     signature = {
       enabled = true,
-      window = {
-        show_documentation = false,
-      },
       trigger = {
         enabled = true,
-        show_on_insert = true,
+        show_on_accept = true,
+        show_on_trigger_character = true,
+        show_on_insert_on_trigger_character = true,
+        show_on_accept_on_trigger_character = true,
+      },
+      window = {
+        scrollbar = false,
+        direction_priority = { "n", "s" },
+        treesitter_highlighting = true,
+        show_documentation = false,
       },
     },
     completion = {
@@ -42,7 +48,12 @@ function M.config()
           treesitter = { "lsp" },
         },
       },
-      list = { selection = { auto_insert = false } },
+      list = {
+        selection = {
+          preselect = true,
+          auto_insert = false,
+        },
+      },
       documentation = { auto_show = true, auto_show_delay_ms = 350, window = { scrollbar = false } },
     },
   })
