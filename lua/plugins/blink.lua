@@ -3,7 +3,7 @@ local M = { "saghen/blink.cmp" }
 M.branch = "main"
 M.build = "cargo build --release"
 M.dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" }
-M.lazy = false
+M.event = "VeryLazy"
 
 function M.config()
   require("luasnip.loaders.from_vscode").lazy_load()
@@ -38,7 +38,7 @@ function M.config()
       },
     },
     completion = {
-      ghost_text = { enabled = true },
+      ghost_text = { enabled = false },
       menu = {
         scrollbar = false,
         scrolloff = 1,

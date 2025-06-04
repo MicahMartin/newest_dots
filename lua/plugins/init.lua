@@ -3,6 +3,7 @@ M = {
   { "neovim/nvim-lspconfig", lazy = false },
   {
     "mfussenegger/nvim-dap",
+    event = "VeryLazy",
     dependencies = {},
     keys = {
       {
@@ -89,6 +90,7 @@ M = {
   },
   {
     "Weissle/persistent-breakpoints.nvim",
+    event = "VeryLazy",
     config = function()
       require("persistent-breakpoints").setup({
         load_breakpoints_event = { "BufReadPost" },
@@ -117,22 +119,11 @@ M = {
       )
     end,
   },
-
   {
     "jay-babu/mason-nvim-dap.nvim",
     ---@type MasonNvimDapSettings
     opts = {
-      -- This line is essential to making automatic installation work
-      -- :exploding-brain
       handlers = {},
-      --automatic_installation = {
-      --	-- These will be configured by separate plugins.
-      --	exclude = {
-      --		"delve",
-      --		"python",
-      --	},
-      --},
-      -- DAP servers: Mason will be invoked to install these if necessary.
       ensure_installed = {
         "codelldb",
         --"python",
@@ -146,19 +137,20 @@ M = {
   {
     "theHamsta/nvim-dap-virtual-text",
     config = true,
+    event = "VeryLazy",
     dependencies = {
       "mfussenegger/nvim-dap",
     },
   },
   {
     "stevearc/overseer.nvim",
+    event = "VeryLazy",
     opts = {},
   },
   { "catgoose/nvim-colorizer.lua", event = "BufReadPre", opts = {} },
   { "folke/which-key.nvim", event = "VeryLazy", opts = {} },
-  { "jay-babu/mason-nvim-dap.nvim" },
-
-  { "rafamadriz/friendly-snippets" },
+  { "jay-babu/mason-nvim-dap.nvim", event = "VeryLazy" },
+  { "rafamadriz/friendly-snippets", event = "VeryLazy" },
 }
 
 return M

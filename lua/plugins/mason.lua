@@ -13,6 +13,7 @@ return {
   },
   {
     "mason-org/mason-lspconfig.nvim",
+    event = "VeryLazy",
     dependencies = {
       "neovim/nvim-lspconfig",
       "mason-org/mason.nvim",
