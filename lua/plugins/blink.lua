@@ -3,7 +3,7 @@ local M = { "saghen/blink.cmp" }
 M.branch = "main"
 M.build = "cargo build --release"
 M.dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" }
-M.event = "VeryLazy"
+M.lazy = false
 
 function M.config()
   require("luasnip.loaders.from_vscode").lazy_load()
@@ -13,8 +13,6 @@ function M.config()
     fuzzy = { implementation = "rust" },
     keymap = {
       preset = "none",
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-b>"] = { "show_signature", "hide_signature", "fallback" },
       ["<Tab>"] = { "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
       ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
@@ -54,7 +52,7 @@ function M.config()
           auto_insert = false,
         },
       },
-      documentation = { auto_show = true, auto_show_delay_ms = 350, window = { scrollbar = false } },
+      documentation = { auto_show = false, auto_show_delay_ms = 350, window = { scrollbar = false } },
     },
   })
 end

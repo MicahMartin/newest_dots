@@ -96,13 +96,6 @@ M.keys = {
     end,
   },
   {
-    "<C-m>",
-    function()
-      Snacks.picker.marks()
-    end,
-    desc = "Show marks",
-  },
-  {
     "<C-d>",
     function()
       Snacks.picker.grep()
