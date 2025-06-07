@@ -1,4 +1,3 @@
--- { "neovim/nvim-lspconfig", lazy = false },
 M = {
   { "catgoose/nvim-colorizer.lua", event = "BufReadPre", opts = {} },
   { "folke/which-key.nvim", event = "BufReadPre", opts = {} },

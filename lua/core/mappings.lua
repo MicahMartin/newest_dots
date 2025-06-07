@@ -1,9 +1,14 @@
 local utils = require("core.utils")
-vim.keymap.set("i", "<C-Space>", 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false,
-})
-vim.g.copilot_no_tab_map = true
+--
+-- let &t_SI = "\e[5 q"
+-- let &t_SR = "\e[3 q"
+-- let &t_EI = "\e[1 q"
+--
+-- vim.keymap.set("i", "<C-Space>", 'copilot#Accept("\\<CR>")', {
+--   expr = true,
+--   replace_keycodes = false,
+-- })
+-- vim.g.copilot_no_tab_map = true
 
 vim.api.nvim_create_user_command("Vr", function()
   utils.prompt_resize("vertical")
@@ -13,14 +18,15 @@ vim.api.nvim_create_user_command("Hr", function()
   utils.prompt_resize("horizontal")
 end, { nargs = "?" })
 
-vim.keymap.set("n", "<C-g>", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-q>", "<C-d>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<C-g>", "<Nop>", { noremap = true, silent = true })
 -- Unbind in visual mode too
 vim.keymap.set("v", "<C-g>", "<Nop>", { noremap = true, silent = true })
 
 -- unbind s and S, we need those for surround
-vim.keymap.set("n", "s", "<Nop>", { noremap = true, silent = true })
-vim.keymap.set("n", "S", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "s", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "S", "<Nop>", { noremap = true, silent = true })
 
 -- Window nav
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
@@ -28,26 +34,25 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 
-vim.keymap.set("n", "<leader>wu", "<cmd>vertical resize +6 <cr>", { desc = "Quick horizontal increase" })
-vim.keymap.set("n", "<leader>wU", "<cmd>vertical resize -6 <cr>", { desc = "Quick horizontal decrease " })
-vim.keymap.set("n", "<leader>wd", "<cmd> resize +6 <cr>", { desc = "Quick vert increase" })
-vim.keymap.set("n", "<leader>wD", "<cmd> resize -6 <cr>", { desc = "Quick vert decrease" })
-
-vim.keymap.set("n", "t", "'", { desc = "Remap of mark jump prefix" })
-
 -- General controls
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 vim.keymap.set("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 -- Resizes
-vim.keymap.set("n", "<leader>w.", "<cmd>Hr<cr>", { desc = "Resize horizontal percent" })
-vim.keymap.set("n", "<leader>w,", "<cmd>Vr<cr>", { desc = "Resize vert percent" })
+-- vim.keymap.set("n", "<leader>w.", "<cmd>Hr<cr>", { desc = "Resize horizontal percent" })
+-- vim.keymap.set("n", "<leader>w,", "<cmd>Vr<cr>", { desc = "Resize vert percent" })
 -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 --
 -- Dont deselect after indenting
--- vim.keymap.set("v", "<", "<gv", opts)
--- vim.keymap.set("v", ">", ">gv", opts)
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 
+-- vim.keymap.set("n", "<leader>wu", "<cmd>vertical resize +6 <cr>", { desc = "Quick horizontal increase" })
+-- vim.keymap.set("n", "<leader>wU", "<cmd>vertical resize -6 <cr>", { desc = "Quick horizontal decrease " })
+-- vim.keymap.set("n", "<leader>wd", "<cmd> resize +6 <cr>", { desc = "Quick vert increase" })
+-- vim.keymap.set("n", "<leader>wD", "<cmd> resize -6 <cr>", { desc = "Quick vert decrease" })
+
+-- vim.keymap.set("n", "t", "'", { desc = "Remap of mark jump prefix" })
 -- LEADER COMMANDS
 -- Quit vim
 vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
