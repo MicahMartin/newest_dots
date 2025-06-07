@@ -2,6 +2,14 @@ return {
   "mfussenegger/nvim-dap",
   event = "VeryLazy",
   dependencies = {},
+  opts = {},
+  config = function()
+    local dap = require("dap")
+    dap.adapters.codelldb = {
+      type = "executable",
+      command = "codelldb",
+    }
+  end,
   keys = {
     {
       "<leader>an",

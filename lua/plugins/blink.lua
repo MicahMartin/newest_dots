@@ -17,6 +17,7 @@ function M.config()
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
       ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
       ["<C-j>"] = { "select_next", "fallback_to_mappings" },
+      ["<C-x>"] = { "show_signature", "hide_signature", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
     },
     signature = {
@@ -24,14 +25,11 @@ function M.config()
       trigger = {
         enabled = true,
         show_on_accept = true,
-        show_on_trigger_character = true,
-        show_on_insert_on_trigger_character = true,
-        show_on_accept_on_trigger_character = true,
       },
       window = {
         scrollbar = false,
         direction_priority = { "n", "s" },
-        treesitter_highlighting = true,
+        treesitter_highlighting = false,
         show_documentation = false,
       },
     },
@@ -43,7 +41,6 @@ function M.config()
         draw = {
           padding = { 0, 1 }, -- padding only on right side
           columns = { { "label" }, { "kind_icon", "kind", gap = 1 } },
-          treesitter = { "lsp" },
         },
       },
       list = {
@@ -52,7 +49,7 @@ function M.config()
           auto_insert = false,
         },
       },
-      documentation = { auto_show = false, auto_show_delay_ms = 350, window = { scrollbar = false } },
+      documentation = { auto_show = true, auto_show_delay_ms = 350, window = { scrollbar = false } },
     },
   })
 end

@@ -4,6 +4,7 @@ return {
     event = "VeryLazy",
     ft = { "cpp, c", "cxx", "h", "hpp" },
     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    opts = {},
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
