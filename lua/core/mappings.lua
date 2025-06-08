@@ -1,42 +1,31 @@
+--TODO: Open current file git history
 local utils = require("core.utils")
+----- TEXT CONTROL ------
+vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
+vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
+----- UI CONTROL ------
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
-vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
-vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<leader>x", ":%bd!<CR>", { noremap = true, silent = true })
--- vim.keymap.set("n", "<leader>w", "<C-w>")
-
-vim.api.nvim_create_user_command("Vr", function()
-  utils.prompt_resize("vertical")
-end, { nargs = "?" })
-
-vim.api.nvim_create_user_command("Hr", function()
-  utils.prompt_resize("horizontal")
-end, { nargs = "?" })
-
 -- GENERAL FILE CONTROL --
 vim.keymap.set("n", "<leader>fp", function()
   local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
   vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 end, { desc = "Copy file path to clipboard" })
-vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
-vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR>", { desc = "general copy whole file" })
-vim.keymap.set("n", "<leader>0", function(args)
-  local conform = require("conform")
-  -- local lint = require("lint")
 
+vim.keymap.set("n", "<leader>ff", function(args)
+  local conform = require("conform")
   vim.notify("formatting & linting")
   require("conform").format({ async = true })
-  -- require("lint").try_lint()
 end, { desc = "Format & Lint" })
 
+vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
+vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 ---------- LSP Keymaps -------------
-
 -- TODO: CHANGE THIS FUK
 vim.keymap.set("n", "<leader>k", function()
   vim.lsp.buf.code_action()
@@ -59,12 +48,49 @@ end, { desc = "Global Rename" })
 vim.keymap.set("n", "<C-b>", function()
   vim.lsp.buf.signature_help()
 end, { desc = "Signature help" })
-
 ---------- DAP Keymaps -------------
-
--- dap forward
 vim.keymap.set("n", "<leader>as", function()
-  -- local widgets = require("dap.ui.widgets")
-  -- local my_sidebar = widgets.sidebar(widgets.frames)
-  -- my_sidebar.open()
-end, { desc = "Signature help" })
+  require("dap").continue()
+end, { desc = "Dap resume" })
+
+vim.keymap.set("n", "<leader>aa", function()
+  require("dap").step_over()
+end, { desc = "Dap step over" })
+
+vim.keymap.set("n", "<leader>ai", function()
+  require("dap").step_into()
+end, { desc = "Dap step into" })
+
+vim.keymap.set("n", "<leader>ab", function()
+  require("dap").step_back()
+end, { desc = "Dap step back" })
+
+vim.keymap.set("n", "<leader>ag", function()
+  require("dap").run_to_cursor()
+end, { desc = "Dap go until breakpoint" })
+
+vim.keymap.set("n", "<leader>ar", function()
+  require("dap").restart_frame()
+end, { desc = "Dap restart" })
+
+vim.keymap.set("n", "<leader>ao", function()
+  require("dap").repl.open()
+end, { desc = "Dap open repl" })
+
+-- vim.keymap.set("n", "<leader>al", function()
+--   require("dap").()
+-- end, { desc = "Dap run last" })
+
+vim.keymap.set({ "n", "v" }, "<leader>ah", function()
+  require("dap.ui.widgets").hover()
+end)
+vim.keymap.set({ "n", "v" }, "<leader>ap", function()
+  require("dap.ui.widgets").preview()
+end)
+vim.keymap.set("n", "<leader>aR", function()
+  require("dap").restart()
+end, { desc = "Dap restart" })
+
+vim.keymap.set("n", "<leader>aQ", function()
+  require("dap").terminate()
+end, { desc = "Dap quit" })

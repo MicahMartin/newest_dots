@@ -28,14 +28,15 @@ return {
       chunk = { enabled = true, char = { vertial = "▏" } },
     },
     input = { enabled = true, icon = "❯" },
-
-    ---@type snacks.picker.explorer.Config
-    explorer = {
-      enabled = true,
-      replace_netrw = true,
-    },
     picker = {
       enabled = true,
+      sources = {
+        explorer = {
+          auto_close = true,
+          enabled = true,
+          replace_netrw = true,
+        },
+      },
       win = {
         input = {
           keys = {
@@ -65,14 +66,14 @@ return {
       end,
     },
     {
-      "<C-d>",
+      "<C-e>",
       function()
         Snacks.picker.grep()
       end,
       desc = "Grep for words",
     },
     {
-      "<C-e>",
+      "<C-t>",
       function()
         Snacks.picker.buffers()
       end,
@@ -86,7 +87,7 @@ return {
       desc = "Smart Find Files",
     },
     {
-      "<C-t>",
+      "<C-d>",
       function()
         Snacks.picker.recent()
       end,

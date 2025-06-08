@@ -5,14 +5,13 @@ function M.prompt_resize(kind) -- @param kind  string: "vertical" or "horizontal
   if kind == "vertical" then
     usage = "Usage: :Vr {number (1–100)}"
     prompt = "Vertical resize (%): "
-    total_dim = vim.opt.columns:get()
     cmd = "vertical resize"
+    total_dim = vim.opt.lines:get() - vim.opt.cmdheight:get()
   else
     usage = "Usage: :Hr {number (1–100)}"
     prompt = "Horizontal resize (%): "
-    -- subtract cmdheight so the command‐line itself isn’t counted
-    total_dim = vim.opt.lines:get() - vim.opt.cmdheight:get()
     cmd = "resize"
+    total_dim = vim.opt.columns:get()
   end
 
   vim.ui.input({ prompt = prompt }, function(input)
