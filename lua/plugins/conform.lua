@@ -1,9 +1,8 @@
-local M = { "stevearc/conform.nvim" }
-
-M.event = { "BufNewfile", "BufReadPre" }
-M.cmd = { "ConformInfo" }
-function M.config()
-  require("conform").setup({
+return {
+  "stevearc/conform.nvim",
+  event = { "BufNewfile", "BufReadPre" },
+  cmd = { "ConformInfo" },
+  opts = {
     formatters_by_ft = {
       lua = { "stylua" },
       cpp = { "clang-format" },
@@ -24,7 +23,5 @@ function M.config()
       timeout_ms = 500,
       lsp_format = "fallback",
     },
-  })
-end
-
-return M
+  },
+}

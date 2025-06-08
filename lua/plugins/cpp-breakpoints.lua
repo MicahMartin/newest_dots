@@ -24,7 +24,7 @@ return {
     keymap("n", "<leader>aL", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", opts)
     keymap(
       "n",
-      "<leader>as",
+      "<leader>av",
       "<cmd>lua require('persistent-breakpoints.api').set_log_point()<cr>",
       vim.tbl_extend("force", opts, { desc = "Set Log Point" })
     )

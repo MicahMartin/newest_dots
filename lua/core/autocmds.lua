@@ -16,12 +16,19 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
   end,
 })
 
-vim.api.nvim_create_augroup("lint", { clear = true })
+vim.api.nvim_create_augroup("format", { clear = true })
+vim.api.nvim_create_augroup("dap", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  group = "lint",
+  group = "format",
   pattern = "*",
   callback = function(args)
     require("conform").format({ bufnr = args.buf })
   end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPre", {
+  group = "dap",
+  pattern = "*.cpp, *.c, *.h",
+  callback = function() end,
 })
