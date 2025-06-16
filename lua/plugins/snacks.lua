@@ -52,6 +52,13 @@ return {
 
   keys = {
     {
+      "<C-u>",
+      function()
+        Snacks.lazygit()
+      end,
+      desc = "Launch Lazygit",
+    },
+    {
       "-",
       desc = "File Explorer",
       function()
@@ -93,13 +100,7 @@ return {
     --   end,
     --   desc = "Recent Files",
     -- },
-    {
-      "<C-g>",
-      function()
-        Snacks.lazygit()
-      end,
-      desc = "Launch Lazygit",
-    },
+
     {
       "<leader>gl",
       function()

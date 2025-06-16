@@ -27,8 +27,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufReadPre", {
-  group = "dap",
-  pattern = "*.cpp, *.c, *.h",
-  callback = function() end,
-})
+-- vim.api.nvim_create_autocmd("BufReadPre", {
+--   group = "dap",
+--   pattern = "*.cpp, *.c, *.h",
+--   callback = function() end,
+-- })
