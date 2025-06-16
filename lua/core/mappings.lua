@@ -8,10 +8,8 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 -- prev buff
 vim.api.nvim_set_keymap("n", "<bs>", "<C-^>zz", { silent = true, noremap = true })
-
 -- reset dap
 vim.keymap.set("n", "<leader>a0", function()
   require("dapui").open({ reset = true })
