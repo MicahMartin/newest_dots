@@ -86,13 +86,13 @@ return {
       end,
       desc = "Smart Find Files",
     },
-    {
-      "<C-d>",
-      function()
-        Snacks.picker.recent()
-      end,
-      desc = "Recent Files",
-    },
+    -- {
+    --   "<C-d>",
+    --   function()
+    --     Snacks.picker.recent()
+    --   end,
+    --   desc = "Recent Files",
+    -- },
     {
       "<C-g>",
       function()
