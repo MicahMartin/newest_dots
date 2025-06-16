@@ -21,6 +21,12 @@ return {
       "json",
       "cmake",
       "diff",
+      "latex",
+      "norg",
+      "scss",
+      "svelte",
+      "typst",
+      "vue",
     })
   end,
 }

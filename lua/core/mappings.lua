@@ -8,6 +8,11 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
+
+vim.keymap.set("n", "<leader>a0", function()
+  require("dapui").open({ reset = true })
+end, { desc = "fuckin dap" })
 -- GENERAL FILE CONTROL --
 vim.keymap.set("n", "<leader>fp", function()
   local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
@@ -53,11 +58,17 @@ vim.keymap.set("n", "<leader>as", function()
   require("dap").continue()
 end, { desc = "Dap resume" })
 
+vim.keymap.set("n", "<C-q>", function()
+  require("dap").continue()
+end, { desc = "dap continue" })
 vim.keymap.set("n", "<leader>aa", function()
   require("dap").step_over()
 end, { desc = "Dap step over" })
+vim.keymap.set({ "n", "v" }, "<leader>aw", function()
+  require("dapui").elements.watches.add(vim.fn.expand("<cword>"))
+end)
 
-vim.keymap.set("n", "<leader>ai", function()
+vim.keymap.set("n", "<C-,>", function()
   require("dap").step_into()
 end, { desc = "Dap step into" })
 
@@ -94,3 +105,15 @@ end, { desc = "Dap restart" })
 vim.keymap.set("n", "<leader>aQ", function()
   require("dap").terminate()
 end, { desc = "Dap quit" })
+
+vim.api.nvim_set_keymap("n", "<leader>faa", ":!./bro.sh all<CR>", { desc = "all config & build" })
+vim.api.nvim_set_keymap("n", "<leader>fac", ":!./bro.sh -c all<CR>", { desc = "all config" })
+vim.api.nvim_set_keymap("n", "<leader>fab", ":!./bro.sh -b all<CR>", { desc = "all build" })
+
+vim.api.nvim_set_keymap("n", "<leader>fsa", ":!./bro.sh standalone<CR>", { desc = "standalone config & build" })
+vim.api.nvim_set_keymap("n", "<leader>fsc", ":!./bro.sh -c standalone<CR>", { desc = "standalone config" })
+vim.api.nvim_set_keymap("n", "<leader>fsb", ":!./bro.sh -b standalone<CR>", { desc = "standalone build" })
+
+vim.api.nvim_set_keymap("n", "<leader>fda", ":!./bro.sh test<CR>", { desc = "test config & build" })
+vim.api.nvim_set_keymap("n", "<leader>fdc", ":!./bro.sh -c test<CR>", { desc = "test config" })
+vim.api.nvim_set_keymap("n", "<leader>fdb", ":!./bro.sh -b test<CR>", { desc = "test build" })

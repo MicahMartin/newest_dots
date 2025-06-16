@@ -48,11 +48,11 @@ return {
           {
             elements = {
               {
-                id = "stacks",
+                id = "watches",
                 size = 0.25,
               },
               {
-                id = "watches",
+                id = "stacks",
                 size = 0.25,
               },
               {
@@ -60,18 +60,18 @@ return {
                 size = 0.50,
               },
             },
-            position = "right",
-            size = 0.30,
+            position = "left",
+            size = 0.25,
           },
           {
             elements = {
               {
                 id = "console",
-                size = 0.5,
+                size = 0.4,
               },
               {
                 id = "repl",
-                size = 0.5,
+                size = 0.6,
               },
             },
             position = "bottom",

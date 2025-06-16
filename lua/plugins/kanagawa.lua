@@ -93,6 +93,10 @@ return {
         },
       },
       theme = "wave",
+      background = {
+        dark = "wave",
+        light = "wave",
+      },
       overrides = user.overrideFn,
     })
 
