@@ -1,5 +1,5 @@
 --TODO: Open current file git history
-local utils = require("core.utils")
+-- local utils = require("core.utils")
 ----- TEXT CONTROL ------
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
@@ -15,21 +15,24 @@ vim.keymap.set("n", "<leader>a0", function()
   require("dapui").open({ reset = true })
 end, { desc = "fuckin dap" })
 -- GENERAL FILE CONTROL --
-vim.keymap.set("n", "<leader>fp", function()
-  local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
-  vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
-  print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
-end, { desc = "Copy file path to clipboard" })
-
+vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+-- lint
 vim.keymap.set("n", "<leader>ff", function(args)
   local conform = require("conform")
   vim.notify("formatting & linting")
   require("conform").format({ async = true })
 end, { desc = "Format & Lint" })
-
-vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR>", { desc = "general copy whole file" })
+-- copy path
+vim.keymap.set("n", "<leader>fp", function()
+  local filePath = vim.fn.expand("%:~") -- Gets the file path relative to the home directory
+  vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
+  print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
+end, { desc = "Copy file path to clipboard" })
+-- quit
 vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
+-- save
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
+-- clear highlight
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 ---------- LSP Keymaps -------------
 -- TODO: CHANGE THIS FUK
