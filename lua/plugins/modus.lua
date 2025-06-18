@@ -1,12 +1,13 @@
-return {
-  "miikanissi/modus-themes.nvim",
-  priority = 1000,
-  config = function()
-    require("modus-themes").setup({
-      line_nr_column_background = false,
-      sign_column_background = false,
-      variant = "default",
-    })
-    vim.cmd([[colorscheme modus]])
-  end,
-}
+-- return {
+--   "miikanissi/modus-themes.nvim",
+--   priority = 1000,
+--   config = function()
+--     require("modus-themes").setup({
+--       line_nr_column_background = false,
+--       sign_column_background = false,
+--       variant = "default",
+--     })
+--     vim.cmd([[colorscheme modus]])
+--   end,
+-- }
+return {}

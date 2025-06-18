@@ -24,13 +24,12 @@ return {
         enabled = true,
         trigger = {
           enabled = true,
-          show_on_insert = true,
           show_on_accept = true,
         },
         window = {
           scrollbar = false,
           direction_priority = { "n", "s" },
-          treesitter_highlighting = false,
+          treesitter_highlighting = true,
           show_documentation = false,
         },
       },
@@ -52,7 +51,7 @@ return {
         },
         ---@type blink.cmp.CompletionDocumentationConfig
         documentation = {
-          treesitter_highlighting = false,
+          treesitter_highlighting = true,
           auto_show = true,
           auto_show_delay_ms = 350,
           window = { scrollbar = false },
