@@ -2,6 +2,35 @@ return {
   "folke/snacks.nvim",
   lazy = false,
   priority = 1000,
+  opts = {
+    indent = {
+      enabled = true,
+      char = "▏",
+      scope = { enabled = false },
+      chunk = { enabled = true, char = { vertial = "▏" } },
+    },
+    input = { enabled = true, icon = "❯" },
+    picker = {
+      enabled = true,
+      sources = {
+        explorer = {
+          enabled = true,
+          auto_close = true,
+          replace_netrw = true,
+        },
+      },
+      win = {
+        input = {
+          keys = {
+            ["<c-x>"] = { "bufdelete", mode = { "i", "n" } },
+            ["<c-c>"] = { "close", mode = { "n", "i" } },
+          },
+        },
+      },
+    },
+    notifier = { enabled = true },
+    statuscolumn = { enabled = true },
+  },
   init = function()
     vim.g.snacks_animate = false
     vim.api.nvim_create_autocmd("User", {
@@ -20,35 +49,6 @@ return {
       end,
     })
   end,
-  opts = {
-    indent = {
-      enabled = true,
-      char = "▏",
-      scope = { enabled = false },
-      chunk = { enabled = true, char = { vertial = "▏" } },
-    },
-    input = { enabled = true, icon = "❯" },
-    picker = {
-      enabled = true,
-      sources = {
-        explorer = {
-          auto_close = true,
-          enabled = true,
-          replace_netrw = true,
-        },
-      },
-      win = {
-        input = {
-          keys = {
-            ["<c-x>"] = { "bufdelete", mode = { "i", "n" } },
-            ["<c-c>"] = { "close", mode = { "n", "i" } },
-          },
-        },
-      },
-    },
-    notifier = { enabled = true },
-    statuscolumn = { enabled = true },
-  },
 
   keys = {
     {

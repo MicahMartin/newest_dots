@@ -7,7 +7,7 @@ local def_capabilites = vim.lsp.protocol.make_client_capabilities()
 vim.lsp.config("*", {
   capabiliteies = def_capabilites,
 })
-vim.lsp.enable({ "clangd", "lua_ls" })
+vim.lsp.enable({ "clangd", "lua_ls", "vtsls" })
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "<filetype>" },
