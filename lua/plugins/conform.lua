@@ -17,6 +17,7 @@ return {
       yaml = { "prettierd" },
       markdown = { "prettierd" },
       graphql = { "prettierd" },
+      sql = { "sqlfluff" },
     },
     format_on_save = {
       async = false,

@@ -74,33 +74,33 @@ function user.overrideFn(colors)
   }
 end
 
--- return {
---   "rebelot/kanagawa.nvim",
---   lazy = false,
---   priority = 1000,
---   config = function()
---     require("kanagawa").setup({
---       compile = true,
---       commentStyle = { italic = false },
---       terminalColors = true,
---       colors = {
---         theme = {
---           all = {
---             ui = {
---               bg_gutter = "none",
---             },
---           },
---         },
---       },
---       theme = "wave",
---       background = {
---         dark = "wave",
---         light = "wave",
---       },
---       overrides = user.overrideFn,
---     })
---
---     vim.cmd([[colorscheme kanagawa]])
---   end,
--- }
-return {}
+return {
+  "rebelot/kanagawa.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("kanagawa").setup({
+      compile = true,
+      commentStyle = { italic = false },
+      terminalColors = true,
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none",
+            },
+          },
+        },
+      },
+      theme = "wave",
+      background = {
+        dark = "wave",
+        light = "lotus",
+      },
+      overrides = user.overrideFn,
+    })
+
+    vim.cmd([[colorscheme kanagawa]])
+  end,
+}
+-- return {}

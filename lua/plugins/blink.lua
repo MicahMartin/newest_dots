@@ -29,7 +29,7 @@ return {
         window = {
           scrollbar = false,
           direction_priority = { "n", "s" },
-          treesitter_highlighting = true,
+          treesitter_highlighting = false,
           show_documentation = false,
         },
       },
@@ -51,7 +51,7 @@ return {
         },
         ---@type blink.cmp.CompletionDocumentationConfig
         documentation = {
-          treesitter_highlighting = true,
+          treesitter_highlighting = false,
           auto_show = true,
           auto_show_delay_ms = 350,
           window = { scrollbar = false },
