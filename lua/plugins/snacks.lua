@@ -73,40 +73,18 @@ return {
       end,
     },
     {
-      "<C-e>",
+      "<C-t>",
       function()
         Snacks.picker.grep()
       end,
       desc = "Grep for words",
     },
     {
-      "<C-t>",
-      function()
-        Snacks.picker.buffers()
-      end,
-      desc = "Buffers",
-    },
-    {
-      "<C-f>",
+      "<C-e>",
       function()
         Snacks.picker.smart()
       end,
       desc = "Smart Find Files",
-    },
-    -- {
-    --   "<C-d>",
-    --   function()
-    --     Snacks.picker.recent()
-    --   end,
-    --   desc = "Recent Files",
-    -- },
-
-    {
-      "<leader>gl",
-      function()
-        Snacks.lazygit.log()
-      end,
-      desc = "Git Log",
     },
     {
       "<leader>?",
@@ -115,20 +93,6 @@ return {
       end,
       desc = "Show hotkeys",
     },
-    -- {
-    -- 	"<leader>r",
-    -- 	function()
-    -- 		Snacks.bufdelete()
-    -- 	end,
-    -- 	desc = "Delete Buffer",
-    -- },
-    -- {
-    -- 	"<leader>X",
-    -- 	function()
-    -- 		Snacks.bufdelete.all()
-    -- 	end,
-    -- 	desc = "Delete all Buffers",
-    -- },
     {
       "<leader>n",
       function()
@@ -164,13 +128,13 @@ return {
       end,
       desc = "Goto Definition",
     },
-    {
-      "gD",
-      function()
-        Snacks.picker.lsp_declarations()
-      end,
-      desc = "Goto Declaration",
-    },
+    -- {
+    --   "gD",
+    --   function()
+    --     Snacks.picker.lsp_declarations()
+    --   end,
+    --   desc = "Goto Declaration",
+    -- },
     {
       "gr",
       function()
@@ -179,48 +143,48 @@ return {
       nowait = true,
       desc = "References",
     },
-    {
-      "gi",
-      function()
-        Snacks.picker.lsp_implementations()
-      end,
-      desc = "Goto Implementation",
-    },
-    {
-      "gt",
-      function()
-        Snacks.picker.lsp_type_definitions()
-      end,
-      desc = "Goto T[y]pe Definition",
-    },
-    {
-      "<leader>df",
-      function()
-        Snacks.picker.qflist()
-      end,
-      desc = "Buffer Quickfix List",
-    },
-    {
-      "<leader>dF",
-      function()
-        Snacks.picker.qflist()
-      end,
-      desc = "Buffer Locationfix List",
-    },
-    {
-      "<leader>dE",
-      function()
-        Snacks.picker.diagnostics()
-      end,
-      desc = "Project Diagnostics",
-    },
-    {
-      "<leader>de",
-      function()
-        Snacks.picker.diagnostics_buffer()
-      end,
-      desc = "Buffer Diagnostics",
-    },
+    -- {
+    --   "gi",
+    --   function()
+    --     Snacks.picker.lsp_implementations()
+    --   end,
+    --   desc = "Goto Implementation",
+    -- },
+    -- {
+    --   "gt",
+    --   function()
+    --     Snacks.picker.lsp_type_definitions()
+    --   end,
+    --   desc = "Goto T[y]pe Definition",
+    -- },
+    -- {
+    --   "<leader>df",
+    --   function()
+    --     Snacks.picker.qflist()
+    --   end,
+    --   desc = "Buffer Quickfix List",
+    -- },
+    -- {
+    --   "<leader>dF",
+    --   function()
+    --     Snacks.picker.qflist()
+    --   end,
+    --   desc = "Buffer Locationfix List",
+    -- },
+    -- {
+    --   "<leader>dE",
+    --   function()
+    --     Snacks.picker.diagnostics()
+    --   end,
+    --   desc = "Project Diagnostics",
+    -- },
+    -- {
+    --   "<leader>de",
+    --   function()
+    --     Snacks.picker.diagnostics_buffer()
+    --   end,
+    --   desc = "Buffer Diagnostics",
+    -- },
     -- {
     --   "<leader>dr",
     --   function()

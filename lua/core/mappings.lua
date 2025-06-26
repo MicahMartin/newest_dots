@@ -4,10 +4,11 @@
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 ----- UI CONTROL ------
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
+-- C- homerow is really prime realestate. I dont switch windows enough to justify this
+-- vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
+-- vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
+-- vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
+-- vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 -- prev buff
 vim.api.nvim_set_keymap("n", "<bs>", "<C-^>zz", { silent = true, noremap = true })
 -- reset dap
@@ -35,8 +36,13 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 -- clear highlight
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 ---------- LSP Keymaps -------------
--- TODO: CHANGE THIS FUK
-vim.keymap.set("n", "<leader>k", function()
+vim.keymap.set("i", "<C-CR>", 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
+
+vim.keymap.set("n", "<C-bs>", function()
   vim.lsp.buf.code_action()
 end, { desc = "{USER}Perform code action" })
 
@@ -54,7 +60,7 @@ vim.keymap.set("n", "gR", function()
   vim.lsp.buf.rename()
 end, { desc = "Global Rename" })
 
-vim.keymap.set("n", "<C-d>", function()
+vim.keymap.set("n", "<C-m>", function()
   vim.lsp.buf.signature_help()
 end, { desc = "Signature help" })
 ---------- DAP Keymaps -------------

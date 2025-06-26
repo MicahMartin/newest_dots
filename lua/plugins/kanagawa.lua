@@ -81,6 +81,7 @@ return {
   config = function()
     require("kanagawa").setup({
       compile = true,
+      transparent = false,
       commentStyle = { italic = false },
       terminalColors = true,
       colors = {
@@ -95,7 +96,7 @@ return {
       theme = "wave",
       background = {
         dark = "wave",
-        light = "lotus",
+        light = "wave",
       },
       overrides = user.overrideFn,
     })

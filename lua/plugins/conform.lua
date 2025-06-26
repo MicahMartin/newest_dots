@@ -19,6 +19,16 @@ return {
       graphql = { "prettierd" },
       sql = { "sqlfluff" },
     },
+    formatters = {
+      sqlfluff = {
+        command = "sqlfluff",
+        args = { "format", "--dialect=sqlite", "-" },
+        stdin = true,
+        cwd = function()
+          return vim.fn.getcwd()
+        end,
+      },
+    },
     format_on_save = {
       async = false,
       timeout_ms = 500,
