@@ -52,7 +52,7 @@ return {
 
   keys = {
     {
-      "<C-u>",
+      "<leader>gg",
       function()
         Snacks.lazygit()
       end,
@@ -73,14 +73,14 @@ return {
       end,
     },
     {
-      "<C-t>",
+      "<leader>p",
       function()
         Snacks.picker.grep()
       end,
       desc = "Grep for words",
     },
     {
-      "<C-e>",
+      "<leader>o",
       function()
         Snacks.picker.smart()
       end,

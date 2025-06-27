@@ -38,7 +38,6 @@ return {
         -- indentation, provided by nvim-treesitter
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         -- form some guy on reddit
-        vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
       end,
     })
     require("nvim-treesitter").install(filetypes)

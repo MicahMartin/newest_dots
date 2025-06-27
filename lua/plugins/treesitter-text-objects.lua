@@ -1,202 +1,426 @@
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
   branch = "main",
-  opts = {},
-  keys = {
-    {
-      "af",
-      function()
-        require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
-      end,
-      mode = { "x", "o" },
-      desc = "@function.outer",
+  ---@type TSTextObjects.UserConfig
+  opts = {
+    ---@type TSTextObjects.Config.Select
+    select = {
+      lookahead = true,
+      include_surrounding_whitespace = false,
     },
-    {
-      "if",
-      function()
-        require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
-      end,
-      mode = { "x", "o" },
-      desc = "@function.inner",
+    ---@type TSTextObjects.Config.Move
+    move = {
+      set_jumps = true,
     },
-    {
-      "ac", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
-      end,
-      mode = { "x", "o" }, -- mode obj with 2 strings
-      desc = "@class.outer", -- description should be same as the query string (@whatever)
-    },
-
-    {
-      "ic", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
-      end,
-      mode = { "x", "o" }, -- mode obj with 2 strings
-      desc = "@class.inner", -- description should be same as the query string (@whatever)
-    },
-
-    {
-      "as", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.select").select_textobject("@local.scope", "locals")
-      end,
-      mode = { "x", "o" }, -- mode obj with 2 strings
-      desc = "@local.scope", -- description should be same as the query string (@whatever)
-    },
-
-    --  {
-    --    "<leader>a", -- key code
-
-    --    function() -- callback
-    --      require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
-    --    end,
-    --    mode = { "n" }, -- mode obj with 1 string
-    --    desc = "@parameter.inner", -- description same as the query string
-    --  },
-
-    --  {
-    --    "<leader>A", -- key code
-
-    --    function() -- callback
-    --      require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.outer")
-    --    end,
-    --    mode = { "n" }, -- mode obj with 1 string
-    --    desc = "@parameter.outer", -- description same as the query string
-    --  },
-
-    {
-      "]m", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" }, -- mode obj with 3 strings
-      desc = "@function.outer", -- description same as the query string
-    },
-
-    {
-      "]]", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@class.outer",
-    },
-
-    {
-      "]o", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next_start({ "@loop.inner", "@loop.outer" }, "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@loop.inner, @loop.outer",
-    },
-
-    {
-      "]s", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next_start("@local.scope", "locals")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@local.scope",
-    },
-
-    {
-      "]z", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next_start("@fold", "folds")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@fold",
-    },
-
-    {
-      "]M", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@function.outer",
-    },
-
-    {
-      "][", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next_end("@class.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@class.outer",
-    },
-
-    {
-      "[m", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@function.outer",
-    },
-
-    {
-      "[[", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@class.outer",
-    },
-
-    {
-      "[M", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@function.outer",
-    },
-
-    {
-      "[]", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_previous_end("@class.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@class.outer",
-    },
-
-    {
-      "]d", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_next("@conditional.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@conditional.outer",
-    },
-
-    {
-      "[d", -- key code
-
-      function() -- callback
-        require("nvim-treesitter-textobjects.move").goto_previous("@conditional.outer", "textobjects")
-      end,
-      mode = { "n", "x", "o" },
-      desc = "@conditional.outer",
+    selection_modes = {
+      ["@parameter.outer"] = "v", -- charwise
+      ["@function.outer"] = "V", -- linewise
+      ["@class.outer"] = "<c-v>", -- blockwise
     },
   },
+  config = function()
+    local select = require("nvim-treesitter-textobjects.select")
+    for _, mode in ipairs({ "x", "o" }) do
+      vim.keymap.set(mode, "am", function()
+        select.select_textobject("@function.outer", "textobjects")
+      end, { desc = "Select around function" })
+      vim.keymap.set(mode, "im", function()
+        select.select_textobject("@function.inner", "textobjects")
+      end, { desc = "Select inside function" })
+      vim.keymap.set(mode, "al", function()
+        select.select_textobject("@class.outer", "textobjects")
+      end, { desc = "Select around class" })
+      vim.keymap.set(mode, "il", function()
+        select.select_textobject("@class.inner", "textobjects")
+      end, { desc = "Select inside class" })
+      vim.keymap.set(mode, "ab", function()
+        select.select_textobject("@block.outer", "textobjects")
+      end, { desc = "Select around block" })
+      vim.keymap.set(mode, "ib", function()
+        select.select_textobject("@block.inner", "textobjects")
+      end, { desc = "Select inside block" })
+      vim.keymap.set(mode, "ad", function()
+        select.select_textobject("@conditional.outer", "textobjects")
+      end, { desc = "Select around conditional" })
+      vim.keymap.set(mode, "id", function()
+        select.select_textobject("@conditional.inner", "textobjects")
+      end, { desc = "Select inside conditional" })
+      vim.keymap.set(mode, "ao", function()
+        select.select_textobject("@loop.outer", "textobjects")
+      end, { desc = "Select around loop" })
+      vim.keymap.set(mode, "io", function()
+        select.select_textobject("@loop.inner", "textobjects")
+      end, { desc = "Select inside loop" })
+      vim.keymap.set(mode, "aa", function()
+        select.select_textobject("@parameter.outer", "textobjects")
+      end, { desc = "Select around parameter" })
+      vim.keymap.set(mode, "ia", function()
+        select.select_textobject("@parameter.inner", "textobjects")
+      end, { desc = "Select inside parameter" })
+      vim.keymap.set(mode, "af", function()
+        select.select_textobject("@call.outer", "textobjects")
+      end, { desc = "Select around function call" })
+      vim.keymap.set(mode, "if", function()
+        select.select_textobject("@call.inner", "textobjects")
+      end, { desc = "Select inside function call" })
+      vim.keymap.set(mode, "ac", function()
+        select.select_textobject("@comment.outer", "textobjects")
+      end, { desc = "Select around comment" })
+      vim.keymap.set(mode, "ar", function()
+        select.select_textobject("@frame.outer", "textobjects")
+      end, { desc = "Select around frame" })
+      vim.keymap.set(mode, "ir", function()
+        select.select_textobject("@frame.inner", "textobjects")
+      end, { desc = "Select inside frame" })
+      vim.keymap.set(mode, "at", function()
+        select.select_textobject("@attribute.outer", "textobjects")
+      end, { desc = "Select around attribute" })
+      vim.keymap.set(mode, "it", function()
+        select.select_textobject("@attribute.inner", "textobjects")
+      end, { desc = "Select inside attribute" })
+      vim.keymap.set(mode, "ae", function()
+        select.select_textobject("@scopename.inner", "textobjects")
+      end, { desc = "Select entire scope name" })
+      vim.keymap.set(mode, "ie", function()
+        select.select_textobject("@scopename.inner", "textobjects")
+      end, { desc = "Select inside scope name" })
+      vim.keymap.set(mode, "as", function()
+        select.select_textobject("@statement.outer", "textobjects")
+      end, { desc = "Select around statement" })
+      vim.keymap.set(mode, "is", function()
+        select.select_textobject("@statement.outer", "textobjects")
+      end, { desc = "Select inside statement" })
+    end
+
+    -- swap
+    local swap = require("nvim-treesitter-textobjects.swap")
+
+    vim.keymap.set("n", ")m", function()
+      swap.swap_next("@function.outer")
+    end, { desc = "Swap with next function" })
+    vim.keymap.set("n", ")c", function()
+      swap.swap_next("@comment.outer")
+    end, { desc = "Swap with next comment" })
+    vim.keymap.set("n", ")a", function()
+      swap.swap_next("@parameter.inner")
+    end, { desc = "Swap with next parameter" })
+    vim.keymap.set("n", ")b", function()
+      swap.swap_next("@block.outer")
+    end, { desc = "Swap with next block" })
+    vim.keymap.set("n", ")C", function()
+      swap.swap_next("@class.outer")
+    end, { desc = "Swap with next class" })
+
+    vim.keymap.set("n", "(m", function()
+      swap.swap_previous("@function.outer")
+    end, { desc = "Swap with previous function" })
+    vim.keymap.set("n", "(c", function()
+      swap.swap_previous("@comment.outer")
+    end, { desc = "Swap with previous comment" })
+    vim.keymap.set("n", "(a", function()
+      swap.swap_previous("@parameter.inner")
+    end, { desc = "Swap with previous parameter" })
+    vim.keymap.set("n", "(b", function()
+      swap.swap_previous("@block.outer")
+    end, { desc = "Swap with previous block" })
+    vim.keymap.set("n", "(C", function()
+      swap.swap_previous("@class.outer")
+    end, { desc = "Swap with previous class" })
+
+    -- move
+    local move = require("nvim-treesitter-textobjects.move")
+    vim.keymap.set({ "n", "x", "o" }, "]m", function()
+      move.goto_next_start("@function.outer")
+    end, { desc = "Go to next function start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]f", function()
+      move.goto_next_start("@call.outer")
+    end, { desc = "Go to next function call start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]d", function()
+      move.goto_next_start("@conditional.outer")
+    end, { desc = "Go to next conditional start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]o", function()
+      move.goto_next_start("@loop.outer")
+    end, { desc = "Go to next loop start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]s", function()
+      move.goto_next_start("@statement.outer")
+    end, { desc = "Go to next statement start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]a", function()
+      move.goto_next_start("@parameter.outer")
+    end, { desc = "Go to next parameter start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]c", function()
+      move.goto_next_start("@comment.outer")
+    end, { desc = "Go to next comment start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]b", function()
+      move.goto_next_start("@block.outer")
+    end, { desc = "Go to next block start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]l", function()
+      move.goto_next_start("@class.outer")
+    end, { desc = "Go to next class start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]r", function()
+      move.goto_next_start("@frame.outer")
+    end, { desc = "Go to next frame start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]t", function()
+      move.goto_next_start("@attribute.outer")
+    end, { desc = "Go to next attribute start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]e", function()
+      move.goto_next_start("@scopename.outer")
+    end, { desc = "Go to next scope name start (outer)" })
+
+    vim.keymap.set({ "n", "x", "o" }, "]]m", function()
+      move.goto_next_start("@function.inner")
+    end, { desc = "Go to next function start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]f", function()
+      move.goto_next_start("@call.inner")
+    end, { desc = "Go to next function call start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]d", function()
+      move.goto_next_start("@conditional.inner")
+    end, { desc = "Go to next conditional start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]o", function()
+      move.goto_next_start("@loop.inner")
+    end, { desc = "Go to next loop start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]a", function()
+      move.goto_next_start("@parameter.inner")
+    end, { desc = "Go to next parameter start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]b", function()
+      move.goto_next_start("@block.inner")
+    end, { desc = "Go to next block start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]l", function()
+      move.goto_next_start("@class.inner")
+    end, { desc = "Go to next class start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]r", function()
+      move.goto_next_start("@frame.inner")
+    end, { desc = "Go to next frame start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]t", function()
+      move.goto_next_start("@attribute.inner")
+    end, { desc = "Go to next attribute start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]e", function()
+      move.goto_next_start("@scopename.inner")
+    end, { desc = "Go to next scope name start (inner)" })
+
+    vim.keymap.set({ "n", "x", "o" }, "]M", function()
+      move.goto_next_end("@function.outer")
+    end, { desc = "Go to next function end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]F", function()
+      move.goto_next_end("@call.outer")
+    end, { desc = "Go to next function call end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]D", function()
+      move.goto_next_end("@conditional.outer")
+    end, { desc = "Go to next conditional end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]O", function()
+      move.goto_next_end("@loop.outer")
+    end, { desc = "Go to next loop end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]S", function()
+      move.goto_next_end("@statement.outer")
+    end, { desc = "Go to next statement end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]A", function()
+      move.goto_next_end("@parameter.outer")
+    end, { desc = "Go to next parameter end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]C", function()
+      move.goto_next_end("@comment.outer")
+    end, { desc = "Go to next comment end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]B", function()
+      move.goto_next_end("@block.outer")
+    end, { desc = "Go to next block end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]L", function()
+      move.goto_next_end("@class.outer")
+    end, { desc = "Go to next class end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]R", function()
+      move.goto_next_end("@frame.outer")
+    end, { desc = "Go to next frame end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]T", function()
+      move.goto_next_end("@attribute.outer")
+    end, { desc = "Go to next attribute end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "]E", function()
+      move.goto_next_end("@scopename.outer")
+    end, { desc = "Go to next scope name end (outer)" })
+
+    vim.keymap.set({ "n", "x", "o" }, "]]M", function()
+      move.goto_next_end("@function.inner")
+    end, { desc = "Go to next function end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]F", function()
+      move.goto_next_end("@call.inner")
+    end, { desc = "Go to next function call end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]D", function()
+      move.goto_next_end("@conditional.inner")
+    end, { desc = "Go to next conditional end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]O", function()
+      move.goto_next_end("@loop.inner")
+    end, { desc = "Go to next loop end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]A", function()
+      move.goto_next_end("@parameter.inner")
+    end, { desc = "Go to next parameter end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]B", function()
+      move.goto_next_end("@block.inner")
+    end, { desc = "Go to next block end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]L", function()
+      move.goto_next_end("@class.inner")
+    end, { desc = "Go to next class end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]R", function()
+      move.goto_next_end("@frame.inner")
+    end, { desc = "Go to next frame end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]T", function()
+      move.goto_next_end("@attribute.inner")
+    end, { desc = "Go to next attribute end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "]]E", function()
+      move.goto_next_end("@scopename.inner")
+    end, { desc = "Go to next scope name end (inner)" })
+
+    vim.keymap.set({ "n", "x", "o" }, "[m", function()
+      move.goto_previous_start("@function.outer")
+    end, { desc = "Go to previous function start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[f", function()
+      move.goto_previous_start("@call.outer")
+    end, { desc = "Go to previous function call start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[d", function()
+      move.goto_previous_start("@conditional.outer")
+    end, { desc = "Go to previous conditional start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[o", function()
+      move.goto_previous_start("@loop.outer")
+    end, { desc = "Go to previous loop start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[s", function()
+      move.goto_previous_start("@statement.outer")
+    end, { desc = "Go to previous statement start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[a", function()
+      move.goto_previous_start("@parameter.outer")
+    end, { desc = "Go to previous parameter start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[c", function()
+      move.goto_previous_start("@comment.outer")
+    end, { desc = "Go to previous comment start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[b", function()
+      move.goto_previous_start("@block.outer")
+    end, { desc = "Go to previous block start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[l", function()
+      move.goto_previous_start("@class.outer")
+    end, { desc = "Go to previous class start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[r", function()
+      move.goto_previous_start("@frame.outer")
+    end, { desc = "Go to previous frame start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[t", function()
+      move.goto_previous_start("@attribute.outer")
+    end, { desc = "Go to previous attribute start (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[e", function()
+      move.goto_previous_start("@scopename.outer")
+    end, { desc = "Go to previous scope name start (outer)" })
+
+    vim.keymap.set({ "n", "x", "o" }, "[[m", function()
+      move.goto_previous_start("@function.inner")
+    end, { desc = "Go to previous function start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[f", function()
+      move.goto_previous_start("@call.inner")
+    end, { desc = "Go to previous function call start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[d", function()
+      move.goto_previous_start("@conditional.inner")
+    end, { desc = "Go to previous conditional start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[o", function()
+      move.goto_previous_start("@loop.inner")
+    end, { desc = "Go to previous loop start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[a", function()
+      move.goto_previous_start("@parameter.inner")
+    end, { desc = "Go to previous parameter start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[b", function()
+      move.goto_previous_start("@block.inner")
+    end, { desc = "Go to previous block start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[l", function()
+      move.goto_previous_start("@class.inner")
+    end, { desc = "Go to previous class start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[r", function()
+      move.goto_previous_start("@frame.inner")
+    end, { desc = "Go to previous frame start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[t", function()
+      move.goto_previous_start("@attribute.inner")
+    end, { desc = "Go to previous attribute start (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[e", function()
+      move.goto_previous_start("@scopename.inner")
+    end, { desc = "Go to previous scope name start (inner)" })
+
+    vim.keymap.set({ "n", "x", "o" }, "[M", function()
+      move.goto_previous_end("@function.outer")
+    end, { desc = "Go to previous function end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[F", function()
+      move.goto_previous_end("@call.outer")
+    end, { desc = "Go to previous function call end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[D", function()
+      move.goto_previous_end("@conditional.outer")
+    end, { desc = "Go to previous conditional end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[O", function()
+      move.goto_previous_end("@loop.outer")
+    end, { desc = "Go to previous loop end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[S", function()
+      move.goto_previous_end("@statement.outer")
+    end, { desc = "Go to previous statement end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[A", function()
+      move.goto_previous_end("@parameter.outer")
+    end, { desc = "Go to previous parameter end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[C", function()
+      move.goto_previous_end("@comment.outer")
+    end, { desc = "Go to previous comment end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[B", function()
+      move.goto_previous_end("@block.outer")
+    end, { desc = "Go to previous block end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[L", function()
+      move.goto_previous_end("@class.outer")
+    end, { desc = "Go to previous class end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[R", function()
+      move.goto_previous_end("@frame.outer")
+    end, { desc = "Go to previous frame end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[T", function()
+      move.goto_previous_end("@attribute.outer")
+    end, { desc = "Go to previous attribute end (outer)" })
+    vim.keymap.set({ "n", "x", "o" }, "[E", function()
+      move.goto_previous_end("@scopename.outer")
+    end, { desc = "Go to previous scope name end (outer)" })
+
+    vim.keymap.set({ "n", "x", "o" }, "[[M", function()
+      move.goto_previous_end("@function.inner")
+    end, { desc = "Go to previous function end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[F", function()
+      move.goto_previous_end("@call.inner")
+    end, { desc = "Go to previous function call end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[D", function()
+      move.goto_previous_end("@conditional.inner")
+    end, { desc = "Go to previous conditional end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[O", function()
+      move.goto_previous_end("@loop.inner")
+    end, { desc = "Go to previous loop end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[A", function()
+      move.goto_previous_end("@parameter.inner")
+    end, { desc = "Go to previous parameter end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[B", function()
+      move.goto_previous_end("@block.inner")
+    end, { desc = "Go to previous block end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[L", function()
+      move.goto_previous_end("@class.inner")
+    end, { desc = "Go to previous class end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[R", function()
+      move.goto_previous_end("@frame.inner")
+    end, { desc = "Go to previous frame end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[T", function()
+      move.goto_previous_end("@attribute.inner")
+    end, { desc = "Go to previous attribute end (inner)" })
+    vim.keymap.set({ "n", "x", "o" }, "[[E", function()
+      move.goto_previous_end("@scopename.inner")
+    end, { desc = "Go to previous scope name end (inner)" })
+
+    -- Repeat movement with ; and ,
+    local repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
+
+    vim.keymap.set(
+      { "n", "x", "o" },
+      ";",
+      repeat_move.repeat_last_move_next,
+      { expr = true, desc = "Repeat last textobject movement forward" }
+    )
+    vim.keymap.set(
+      { "n", "x", "o" },
+      ",",
+      repeat_move.repeat_last_move_previous,
+      { expr = true, desc = "Repeat last textobject movement backward" }
+    )
+
+    -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+    vim.keymap.set({ "n", "x", "o" }, "f", repeat_move.builtin_f_expr, { expr = true, desc = "Repeatable built-in f" })
+    vim.keymap.set({ "n", "x", "o" }, "F", repeat_move.builtin_F_expr, { expr = true, desc = "Repeatable built-in F" })
+    vim.keymap.set({ "n", "x", "o" }, "t", repeat_move.builtin_t_expr, { expr = true, desc = "Repeatable built-in t" })
+    vim.keymap.set({ "n", "x", "o" }, "T", repeat_move.builtin_T_expr, { expr = true, desc = "Repeatable built-in T" })
+  end,
 }

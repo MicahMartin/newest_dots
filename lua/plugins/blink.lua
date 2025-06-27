@@ -6,7 +6,6 @@ return {
   lazy = false,
   config = function()
     require("luasnip.loaders.from_vscode").lazy_load()
-    -- triggerCharacters = { ".", "<", ">", ":", '"', "/", "*" }
     require("blink.cmp").setup({
       snippets = { preset = "luasnip" },
       fuzzy = { implementation = "prefer_rust_with_warning" },

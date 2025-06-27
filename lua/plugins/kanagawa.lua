@@ -38,6 +38,8 @@ function user.overrideFn(colors)
     SnacksPickerToggle = { link = "SnacksProfilerBadgeInfo" },
     SnacksPickerPickWinCurrent = { fg = theme.ui.fg, bg = theme.syn.number, bold = true },
     SnacksPickerPickWin = { fg = theme.ui.fg, bg = theme.ui.bg_search, bold = true },
+    WinSeparator = { fg = "#FFA066" },
+
     -- SnacksInputIcon = { fg = theme.ui.pmenu.bg },
     -- SnacksInputBorder = { fg = theme.syn.identifier },
     -- SnacksInputTitle = { fg = theme.syn.identifier },
@@ -96,7 +98,7 @@ return {
       theme = "wave",
       background = {
         dark = "wave",
-        light = "wave",
+        light = "lotus",
       },
       overrides = user.overrideFn,
     })

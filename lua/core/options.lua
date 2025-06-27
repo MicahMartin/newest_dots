@@ -3,17 +3,17 @@ vim.g.python3_host_prog = vim.fn.expand("~/.config/nvim/venv/bin/python")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 -- TEXT STUFF --
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 vim.o.expandtab = true
-vim.o.foldlevel = 2
+vim.o.foldlevel = 1
 -- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 vim.opt.foldmethod = "expr"
--- vim.wo.foldtext = "v:lua.vim.treesitter.foldtext()"
+vim.wo.foldtext = ""
 vim.o.wrap = true
 vim.opt.fillchars = { eob = " " }
 vim.o.ignorecase = true
@@ -34,7 +34,7 @@ vim.o.showmode = false
 vim.o.undofile = true
 vim.o.updatetime = 300
 vim.o.timeoutlen = 500
-vim.o.scrolloff = 10
+vim.o.scrolloff = 8
 
 vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
