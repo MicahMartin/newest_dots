@@ -2,12 +2,10 @@ return {
   "saghen/blink.cmp",
   branch = "main",
   build = "cargo build --release",
-  -- dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
-  -- require("luasnip.loaders.from_vscode").lazy_load()
+  dependencies = { "rafamadriz/friendly-snippets" },
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    -- snippets = { preset = "luasnip" },
     fuzzy = { implementation = "prefer_rust_with_warning" },
     keymap = { preset = "enter" },
     signature = {
@@ -15,6 +13,10 @@ return {
       trigger = {
         show_on_accept = true,
         show_on_accept_on_trigger_character = true,
+      },
+      window = {
+        treesitter_highlighting = false,
+        show_documentation = false,
       },
     },
     completion = {
@@ -27,15 +29,12 @@ return {
         },
       },
       documentation = {
-        treesitter_highlighting = true,
         auto_show = true,
-        auto_show_delay_ms = 500,
       },
+    },
+    opts_extend = { "sources.completion.enabled_providers" },
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
     },
   },
 }
-
--- window = {
---   treesitter_highlighting = false,
---   show_documentation = false,
--- },
