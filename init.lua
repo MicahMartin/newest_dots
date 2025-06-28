@@ -7,4 +7,5 @@ local def_capabilites = vim.lsp.protocol.make_client_capabilities()
 vim.lsp.config("*", {
   capabiliteies = def_capabilites,
 })
-vim.lsp.enable({ "clangd", "lua_ls", "vtsls", "gopls" })
+
+vim.lsp.enable({ "clangd", "lua_ls", "vtsls", "gopls", "tailwindcss", "marksman" })
