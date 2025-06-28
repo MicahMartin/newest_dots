@@ -2,6 +2,7 @@ return {
   "folke/snacks.nvim",
   lazy = false,
   priority = 1000,
+  ---@type snacks.words.Config
   opts = {
     indent = {
       enabled = true,
@@ -30,6 +31,9 @@ return {
     },
     notifier = { enabled = true },
     statuscolumn = { enabled = true },
+    words = {
+      enabled = true,
+    },
   },
   init = function()
     vim.g.snacks_animate = false
