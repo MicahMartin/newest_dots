@@ -1,10 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   lazy = false,
+  priority = 1000,
   branch = "main",
   build = ":TSUpdate",
   dependencies = {
-    { "OXY2DEV/markview.nvim", lazy = false, dependencies = { "saghen/blink.cmp" } },
+    { "OXY2DEV/markview.nvim", lazy = false },
   },
   config = function()
     local filetypes = {

@@ -1,6 +1,5 @@
 return {
   "nvim-lualine/lualine.nvim",
-  ---@type
   opts = {
     options = {
       component_separators = "",
