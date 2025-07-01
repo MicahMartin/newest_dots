@@ -4,8 +4,8 @@ return {
   opts = {
     library = {
       -- See the configuration section for more details
-      { "nvim-dap-ui" },
-      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      -- { "nvim-dap-ui" },
+      -- { path = "${3rd}/luv/library", words = { "vim%.uv" } },
     },
   },
 }

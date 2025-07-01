@@ -32,7 +32,6 @@ return {
         auto_show = true,
       },
     },
-    opts_extend = { "sources.completion.enabled_providers" },
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
     },
