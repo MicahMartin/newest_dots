@@ -43,8 +43,7 @@ return {
         _G.bt = function()
           Snacks.debug.backtrace()
         end
-        -- vim.print = _G.dd
-
+        --- #ff0000 NOTE: MORE SNACKS KEYMAPS FOR TOGGLES ARE HERE
         Snacks.toggle.line_number():map("<leader>ul")
         Snacks.toggle.inlay_hints():map("<leader>uh")
       end,
@@ -61,18 +60,25 @@ return {
       desc = "Grep Picker",
     },
     {
-      "<leader>l",
+      "<leader>n",
       function()
         Snacks.picker.smart()
       end,
-      desc = "Smart Find Picker",
+      desc = "Smart Picker",
     },
     {
-      "<leader>,",
+      "<leader>b",
       function()
         Snacks.picker.buffers()
       end,
       desc = "Buffer Picker",
+    },
+    {
+      "<leader>m",
+      function()
+        Snacks.picker.marks()
+      end,
+      desc = "Marks Picker",
     },
     --- LSP PICKERS
     {
@@ -134,7 +140,7 @@ return {
       desc = "Show hotkeys",
     },
     {
-      "<leader>n",
+      "<leader>gh",
       function()
         Snacks.notifier.show_history()
       end,

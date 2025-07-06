@@ -33,7 +33,7 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 ---------- LSP Keymaps -------------
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    local buffOpts = { buffer = event.buf }
+    local buffOpts = { buffer = args.buf, silent = true, noremap = true }
     -- LSP Code Action
     vim.keymap.set({ "n", "x" }, "<CR>", function()
       vim.lsp.buf.code_action()
