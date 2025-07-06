@@ -7,7 +7,12 @@ return {
   ---@type blink.cmp.Config
   opts = {
     fuzzy = { implementation = "prefer_rust_with_warning" },
-    keymap = { preset = "enter" },
+    keymap = {
+      preset = "enter",
+      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<C-b>"] = {},
+      ["<C-f>"] = {},
+    },
     signature = {
       enabled = true,
       trigger = {
@@ -32,6 +37,7 @@ return {
         auto_show = true,
       },
     },
+    opts_extend = { "sources.completion.enabled_providers" },
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
     },

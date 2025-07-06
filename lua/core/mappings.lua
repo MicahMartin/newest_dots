@@ -1,25 +1,12 @@
------ TEXT CONTROL ------
+----- GENERAL TEXT CONTROL ------
 vim.keymap.set("v", "<", "<gv", { noremap = true, silent = true })
 vim.keymap.set("v", ">", ">gv", { noremap = true, silent = true })
 vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
 vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
 vim.keymap.set("v", "j", "gj", { noremap = true, silent = true })
 vim.keymap.set("v", "k", "gk", { noremap = true, silent = true })
------ UI CONTROL ------
--- C- homerow is really prime realestate. I dont switch windows enough to justify this
--- vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
--- vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
--- vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
--- vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
--- prev buff
-vim.api.nvim_set_keymap("n", "<bs>", "<C-^>zz", { silent = true, noremap = true })
--- reset dap
--- vim.keymap.set("n", "<leader>a0", function()
---   require("dapui").open({ reset = true })
--- end, { desc = "fuckin dap" })
--- GENERAL FILE CONTROL --
-vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR>", { desc = "general copy whole file" })
--- lint
+---------- GENERAL FILE CONTROL ----------
+-- conform lint
 vim.keymap.set("n", "<leader>ff", function()
   local conform = require("conform")
   vim.notify("formatting & linting")
@@ -31,100 +18,45 @@ vim.keymap.set("n", "<leader>fp", function()
   vim.fn.setreg("+", filePath) -- Copy the file path to the clipboard register
   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 end, { desc = "Copy file path to clipboard" })
+-- copy buffer content
+vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR>", { desc = "general copy buffer" })
 -- quit
 vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
--- save
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 -- clear highlight
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
-
+-- half page down and center
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center cursor after moving down half-page" })
+-- half page up and center
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center cursor after moving down half-page" })
+-- save
+vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 ---------- LSP Keymaps -------------
-vim.keymap.set("n", "gh", function()
-  vim.lsp.buf_request(0, "textDocument/switchSourceHeader", { uri = vim.uri_from_bufnr(0) }, function(err, result)
-    if result then
-      vim.cmd("edit " .. vim.uri_to_fname(result))
-    else
-      vim.notify_once("No match or error")
-    end
-  end)
-end, { desc = "Go to header" })
-
-vim.keymap.set("n", "gR", function()
-  vim.lsp.buf.rename()
-end, { desc = "Global Rename" })
-
-vim.keymap.set("n", "<C-m>", function()
-  vim.lsp.buf.code_action()
-end, { desc = "Signature help" })
-
-vim.keymap.set("i", "<C-CR>", 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false,
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local buffOpts = { buffer = event.buf }
+    -- LSP Code Action
+    vim.keymap.set({ "n", "x" }, "<CR>", function()
+      vim.lsp.buf.code_action()
+    end, buffOpts)
+    -- go to source header
+    vim.keymap.set("n", "grh", function()
+      vim.lsp.buf_request(0, "textDocument/switchSourceHeader", { uri = vim.uri_from_bufnr(0) }, function(e, result)
+        if result then
+          vim.cmd("edit " .. vim.uri_to_fname(result))
+        else
+          vim.notify_once("No match or error")
+        end
+      end)
+    end, buffOpts)
+    -- go to type def
+    vim.keymap.set("n", "grt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", buffOpts)
+    -- go to decl
+    vim.keymap.set("n", "grd", "<cmd>lua vim.lsp.buf.declaration()<cr>", buffOpts)
+    -- Copilot accept stuff
+    vim.g.copilot_no_tab_map = true
+    vim.keymap.set("i", "<C-CR>", 'copilot#Accept("\\<CR>")', {
+      expr = true,
+      replace_keycodes = false,
+    })
+  end,
 })
-vim.g.copilot_no_tab_map = true
----------- DAP Keymaps -------------
--- vim.keymap.set("n", "<leader>as", function()
---   require("dap").continue()
--- end, { desc = "Dap resume" })
---
--- vim.keymap.set("n", "<C-q>", function()
---   require("dap").continue()
--- end, { desc = "dap continue" })
--- vim.keymap.set("n", "<leader>aa", function()
---   require("dap").step_over()
--- end, { desc = "Dap step over" })
--- vim.keymap.set({ "n", "v" }, "<leader>aw", function()
---   require("dapui").elements.watches.add(vim.fn.expand("<cword>"))
--- end)
---
--- vim.keymap.set("n", "<C-,>", function()
---   require("dap").step_into()
--- end, { desc = "Dap step into" })
---
--- vim.keymap.set("n", "<leader>ab", function()
---   require("dap").step_back()
--- end, { desc = "Dap step back" })
---
--- vim.keymap.set("n", "<leader>ag", function()
---   require("dap").run_to_cursor()
--- end, { desc = "Dap go until breakpoint" })
---
--- vim.keymap.set("n", "<leader>ar", function()
---   require("dap").restart_frame()
--- end, { desc = "Dap restart" })
---
--- vim.keymap.set("n", "<leader>ao", function()
---   require("dap").repl.open()
--- end, { desc = "Dap open repl" })
---
--- -- vim.keymap.set("n", "<leader>al", function()
--- --   require("dap").()
--- -- end, { desc = "Dap run last" })
---
--- vim.keymap.set({ "n", "v" }, "<leader>ah", function()
---   require("dap.ui.widgets").hover()
--- end)
--- vim.keymap.set({ "n", "v" }, "<leader>ap", function()
---   require("dap.ui.widgets").preview()
--- end)
--- vim.keymap.set("n", "<leader>aR", function()
---   require("dap").restart()
--- end, { desc = "Dap restart" })
---
--- vim.keymap.set("n", "<leader>aQ", function()
---   require("dap").terminate()
--- end, { desc = "Dap quit" })
---
--- vim.api.nvim_set_keymap("n", "<leader>faa", ":!./bro.sh all<CR>", { desc = "all config & build" })
-vim.api.nvim_set_keymap("n", "<leader>fac", ":!./bro.sh -c all<CR>", { desc = "all config" })
-vim.api.nvim_set_keymap("n", "<leader>fab", ":!./bro.sh -b all<CR>", { desc = "all build" })
-
-vim.api.nvim_set_keymap("n", "<leader>fsa", ":!./bro.sh standalone<CR>", { desc = "standalone config & build" })
-vim.api.nvim_set_keymap("n", "<leader>fsc", ":!./bro.sh -c standalone<CR>", { desc = "standalone config" })
-vim.api.nvim_set_keymap("n", "<leader>fsb", ":!./bro.sh -b standalone<CR>", { desc = "standalone build" })
-
-vim.api.nvim_set_keymap("n", "<leader>fda", ":!./bro.sh test<CR>", { desc = "test config & build" })
-vim.api.nvim_set_keymap("n", "<leader>fdc", ":!./bro.sh -c test<CR>", { desc = "test config" })
-vim.api.nvim_set_keymap("n", "<leader>fdb", ":!./bro.sh -b test<CR>", { desc = "test build" })

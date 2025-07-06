@@ -21,19 +21,27 @@ return {
   config = function()
     local select = require("nvim-treesitter-textobjects.select")
     for _, mode in ipairs({ "x", "o" }) do
-      vim.keymap.set(mode, "a=", function()
+      -- Loops
+      vim.keymap.set(mode, "al", function()
+        select.select_textobject("@loop.outer", "textobjects")
+      end, { desc = "Select around loop" })
+      vim.keymap.set(mode, "il", function()
+        select.select_textobject("@loop.inner", "textobjects")
+      end, { desc = "Select inside loop" })
+      -- Conditionals
+      vim.keymap.set(mode, "aa", function()
         select.select_textobject("@assignment.outer", "textobjects")
       end, { desc = "Select around assignment" })
 
-      vim.keymap.set(mode, "i=", function()
+      vim.keymap.set(mode, "ia", function()
         select.select_textobject("@assignment.inner", "textobjects")
-      end, { desc = "Select around assignment" })
+      end, { desc = "Select inside assignment" })
 
-      vim.keymap.set(mode, "l=", function()
+      vim.keymap.set(mode, "la", function()
         select.select_textobject("@assignment.lhs", "textobjects")
       end, { desc = "Select left side of assignment" })
 
-      vim.keymap.set(mode, "r=", function()
+      vim.keymap.set(mode, "ra", function()
         select.select_textobject("@assignment.rhs", "textobjects")
       end, { desc = "Select right side of assignment" })
 
@@ -60,14 +68,6 @@ return {
       vim.keymap.set(mode, "id", function()
         select.select_textobject("@conditional.inner", "textobjects")
       end, { desc = "Select inside conditional" })
-
-      vim.keymap.set(mode, "ao", function()
-        select.select_textobject("@loop.outer", "textobjects")
-      end, { desc = "Select around loop" })
-
-      vim.keymap.set(mode, "io", function()
-        select.select_textobject("@loop.inner", "textobjects")
-      end, { desc = "Select inside loop" })
 
       vim.keymap.set(mode, "ar", function()
         select.select_textobject("@parameter.outer", "textobjects")

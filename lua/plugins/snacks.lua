@@ -52,6 +52,51 @@ return {
   end,
 
   keys = {
+    --- TELESCOPE STYLE PICKERS
+    {
+      "<leader>/",
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = "Grep Picker",
+    },
+    {
+      "<leader>l",
+      function()
+        Snacks.picker.smart()
+      end,
+      desc = "Smart Find Picker",
+    },
+    {
+      "<leader>,",
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = "Buffer Picker",
+    },
+    --- LSP PICKERS
+    {
+      "<leader>as",
+      function()
+        Snacks.picker.lsp_symbols({
+          tree = true,
+          filter = {
+            default = true,
+            markdown = true,
+            help = true,
+          },
+        })
+      end,
+      desc = "LSP Symbols",
+    },
+    {
+      "<leader>aS",
+      function()
+        Snacks.picker.lsp_workspace_symbols()
+      end,
+      desc = "LSP Workspace Symbols",
+    },
+    --- GITHUB
     {
       "<leader>gg",
       function()
@@ -59,6 +104,7 @@ return {
       end,
       desc = "Launch Lazygit",
     },
+    --- UTILITY
     {
       "-",
       desc = "File Explorer",
@@ -74,18 +120,11 @@ return {
       end,
     },
     {
-      "<leader>p",
+      "<leader>@",
       function()
-        Snacks.picker.grep()
+        Snacks.picker.icons()
       end,
-      desc = "Grep for words",
-    },
-    {
-      "<leader>o",
-      function()
-        Snacks.picker.smart()
-      end,
-      desc = "Smart Find Files",
+      desc = "Icon keyboard",
     },
     {
       "<leader>?",
@@ -101,112 +140,70 @@ return {
       end,
       desc = "Notification History",
     },
-    {
-      "<leader>s",
-      function()
-        Snacks.picker.lsp_symbols({
-          tree = true,
-          filter = {
-            default = true,
-            markdown = true,
-            help = true,
-          },
-        })
-      end,
-      desc = "LSP Symbols",
-    },
-    {
-      "<leader>S",
-      function()
-        Snacks.picker.lsp_workspace_symbols()
-      end,
-      desc = "LSP Workspace Symbols",
-    },
-    {
-      "gd",
-      function()
-        Snacks.picker.lsp_definitions()
-      end,
-      desc = "Goto Definition",
-    },
-    -- {
-    --   "gD",
-    --   function()
-    --     Snacks.picker.lsp_declarations()
-    --   end,
-    --   desc = "Goto Declaration",
-    -- },
-    {
-      "gr",
-      function()
-        Snacks.picker.lsp_references()
-      end,
-      nowait = true,
-      desc = "References",
-    },
-    -- {
-    --   "gi",
-    --   function()
-    --     Snacks.picker.lsp_implementations()
-    --   end,
-    --   desc = "Goto Implementation",
-    -- },
-    -- {
-    --   "gt",
-    --   function()
-    --     Snacks.picker.lsp_type_definitions()
-    --   end,
-    --   desc = "Goto T[y]pe Definition",
-    -- },
-    -- {
-    --   "<leader>df",
-    --   function()
-    --     Snacks.picker.qflist()
-    --   end,
-    --   desc = "Buffer Quickfix List",
-    -- },
-    -- {
-    --   "<leader>dF",
-    --   function()
-    --     Snacks.picker.qflist()
-    --   end,
-    --   desc = "Buffer Locationfix List",
-    -- },
-    -- {
-    --   "<leader>dE",
-    --   function()
-    --     Snacks.picker.diagnostics()
-    --   end,
-    --   desc = "Project Diagnostics",
-    -- },
-    -- {
-    --   "<leader>de",
-    --   function()
-    --     Snacks.picker.diagnostics_buffer()
-    --   end,
-    --   desc = "Buffer Diagnostics",
-    -- },
-    -- {
-    --   "<leader>dr",
-    --   function()
-    --     Snacks.rename.rename_file()
-    --   end,
-    --   desc = "Rename File",
-    -- },
-    {
-      "<leader>@",
-      function()
-        Snacks.picker.icons()
-      end,
-      desc = "Icon keyboard",
-    },
-    {
-      "<leader>/",
-      function()
-        Snacks.picker.grep_word()
-      end,
-      desc = "Visual selection or word",
-      mode = { "n", "x" },
-    },
   },
 }
+
+-- {
+--   "gd",
+--   function()
+--     Snacks.picker.lsp_definitions()
+--   end,
+--   desc = "Goto Definition",
+-- },
+-- {
+--   "gr",
+--   function()
+--     Snacks.picker.lsp_references()
+--   end,
+--   nowait = true,
+--   desc = "References",
+-- },
+-- {
+--   "gi",
+--   function()
+--     Snacks.picker.lsp_implementations()
+--   end,
+--   desc = "Goto Implementation",
+-- },
+-- {
+--   "gt",
+--   function()
+--     Snacks.picker.lsp_type_definitions()
+--   end,
+--   desc = "Goto T[y]pe Definition",
+-- },
+-- {
+--   "<leader>df",
+--   function()
+--     Snacks.picker.qflist()
+--   end,
+--   desc = "Buffer Quickfix List",
+-- },
+-- {
+--   "<leader>dF",
+--   function()
+--     Snacks.picker.qflist()
+--   end,
+--   desc = "Buffer Locationfix List",
+-- },
+-- {
+--   "<leader>dE",
+--   function()
+--     Snacks.picker.diagnostics()
+--   end,
+--   desc = "Project Diagnostics",
+-- },
+-- {
+--   "<leader>de",
+--   function()
+--     Snacks.picker.diagnostics_buffer()
+--   end,
+--   desc = "Buffer Diagnostics",
+-- },
+-- {
+--   "<leader>dr",
+--   function()
+--     Snacks.rename.rename_file()
+--   end,
+--   desc = "Rename File",
+-- },
