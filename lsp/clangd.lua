@@ -16,6 +16,7 @@ local function switch_source_header(bufnr)
     vim.cmd.edit(vim.uri_to_fname(result))
   end, bufnr)
 end
+
 local function symbol_info()
   local bufnr = vim.api.nvim_get_current_buf()
   local clangd_client = vim.lsp.get_clients({ bufnr = bufnr, name = "clangd" })[1]
@@ -44,9 +45,23 @@ end
 
 ---@class ClangdInitializeResult: lsp.InitializeResult
 ---@field offsetEncoding? string
+
 return {
-  cmd = { "clangd" },
+  cmd = {
+    "clangd",
+    "-j=" .. 2,
+    "--background-index",
+    "--clang-tidy",
+    "--inlay-hints",
+    "--fallback-style=llvm",
+    "--all-scopes-completion",
+    "--completion-style=detailed",
+    "--header-insertion=iwyu",
+    "--header-insertion-decorators",
+    "--pch-storage=memory",
+  },
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+
   root_markers = {
     ".clangd",
     ".clang-tidy",
@@ -56,16 +71,27 @@ return {
     "configure.ac", -- AutoTools
     ".git",
   },
+  capabilities = {
+    textDocument = {
+      completion = {
+        editsNearCursor = true,
+      },
+    },
+    offsetEncoding = { "utf-8", "utf-16" },
+  },
+  ---@param client vim.lsp.Client
+  ---@param init_result ClangdInitializeResult
   on_init = function(client, init_result)
     if init_result.offsetEncoding then
       client.offset_encoding = init_result.offsetEncoding
     end
   end,
-  on_attach = function()
-    vim.api.nvim_buf_create_user_command(0, "LspClangdSwitchSourceHeader", function()
-      switch_source_header(0)
+  on_attach = function(_, bufnr)
+    vim.api.nvim_buf_create_user_command(bufnr, "LspClangdSwitchSourceHeader", function()
+      switch_source_header(bufnr)
     end, { desc = "Switch between source/header" })
-    vim.api.nvim_buf_create_user_command(0, "LspClangdShowSymbolInfo", function()
+
+    vim.api.nvim_buf_create_user_command(bufnr, "LspClangdShowSymbolInfo", function()
       symbol_info()
     end, { desc = "Show symbol info" })
   end,
