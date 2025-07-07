@@ -149,6 +149,19 @@ return {
     end, { desc = "Swap with next call" })
     -- move
     local move = require("nvim-treesitter-textobjects.move")
+    -- assignments
+    vim.keymap.set("n", "]a", function()
+      move.goto_next_start("@assignment.outer")
+    end, { desc = "next assignment start" })
+    vim.keymap.set("n", "]A", function()
+      move.goto_next_end("@assignment.outer")
+    end, { desc = "next assignment end" })
+    vim.keymap.set("n", "[a", function()
+      move.goto_previous_start("@assignment.outer")
+    end, { desc = "prev assignment start" })
+    vim.keymap.set("n", "[A", function()
+      move.goto_previous_end("@assignment.outer")
+    end, { desc = "next assignment end" })
     -- blocks
     vim.keymap.set("n", "]B", function()
       move.goto_next_start("@block.outer")
@@ -326,12 +339,5 @@ return {
     vim.keymap.set({ "n", "x", "o" }, "[[K", function()
       move.goto_previous_end("@class.inner")
     end, { desc = "Go to previous class end (inner)" })
-    -- Repeat movement with ; and ,
-    local repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
-    -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-    vim.keymap.set({ "n", "x", "o" }, "f", repeat_move.builtin_f_expr, { expr = true, desc = "Repeatable built-in f" })
-    vim.keymap.set({ "n", "x", "o" }, "F", repeat_move.builtin_F_expr, { expr = true, desc = "Repeatable built-in F" })
-    vim.keymap.set({ "n", "x", "o" }, "t", repeat_move.builtin_t_expr, { expr = true, desc = "Repeatable built-in t" })
-    vim.keymap.set({ "n", "x", "o" }, "T", repeat_move.builtin_T_expr, { expr = true, desc = "Repeatable built-in T" })
   end,
 }

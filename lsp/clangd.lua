@@ -16,7 +16,6 @@ local function switch_source_header(bufnr)
     vim.cmd.edit(vim.uri_to_fname(result))
   end, bufnr)
 end
-
 local function symbol_info()
   local bufnr = vim.api.nvim_get_current_buf()
   local clangd_client = vim.lsp.get_clients({ bufnr = bufnr, name = "clangd" })[1]
@@ -43,25 +42,8 @@ local function symbol_info()
   end, bufnr)
 end
 
-local function debugReq(reqName)
-  local bufnr = vim.api.nvim_get_current_buf()
-  local clangd_client = vim.lsp.get_clients({ bufnr = bufnr, name = "clangd" })[1]
-  if not clangd_client then
-    return vim.notify("cant find client", vim.log.levels.ERROR)
-  end
-  local win = vim.api.nvim_get_current_win()
-  local params = vim.lsp.util.make_position_params(win, clangd_client.offset_encoding)
-  clangd_client.request(reqName, params, function(err, res)
-    if err or #res == 0 then
-      -- Clangd always returns an error, there is not reason to parse it
-      return
-    end
-    dd(res[1])
-  end, 0)
-end
 ---@class ClangdInitializeResult: lsp.InitializeResult
 ---@field offsetEncoding? string
-
 return {
   cmd = { "clangd" },
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
@@ -74,16 +56,6 @@ return {
     "configure.ac", -- AutoTools
     ".git",
   },
-  capabilities = {
-    textDocument = {
-      completion = {
-        editsNearCursor = true,
-      },
-    },
-    offsetEncoding = { "utf-8", "utf-16" },
-  },
-  ---@param client vim.lsp.Client
-  ---@param init_result ClangdInitializeResult
   on_init = function(client, init_result)
     if init_result.offsetEncoding then
       client.offset_encoding = init_result.offsetEncoding
@@ -93,22 +65,8 @@ return {
     vim.api.nvim_buf_create_user_command(0, "LspClangdSwitchSourceHeader", function()
       switch_source_header(0)
     end, { desc = "Switch between source/header" })
-
     vim.api.nvim_buf_create_user_command(0, "LspClangdShowSymbolInfo", function()
       symbol_info()
     end, { desc = "Show symbol info" })
-
-    vim.api.nvim_buf_create_user_command(0, "Kai", function()
-      vim.ui.input({
-        prompt = "Enter clangd request (e.g., symbolInfo, switchSourceHeader): ",
-        default = "textDocument/symbolInfo",
-      }, function(input)
-        if input and input ~= "" then
-          debugReq(input)
-        else
-          vim.notify("Invalid request", vim.log.levels.WARN)
-        end
-      end)
-    end, { desc = " bruh" })
   end,
 }
