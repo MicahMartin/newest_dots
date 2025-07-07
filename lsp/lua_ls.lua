@@ -14,7 +14,7 @@ return {
   settings = {
     Lua = {
       runtime = {
-        version = "Lua 5.4",
+        version = "Lua 5.1",
         path = {
           "lua/?.lua",
           "lua/?/init.lua",

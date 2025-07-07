@@ -49,7 +49,6 @@ return {
       end,
     })
   end,
-
   keys = {
     --- TELESCOPE STYLE PICKERS
     {

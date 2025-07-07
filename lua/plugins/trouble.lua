@@ -29,12 +29,12 @@ return {
   cmd = "Trouble",
   keys = {
     {
-      "<leader>cd",
+      "<leader>cD",
       "<cmd>Trouble diagnostics toggle<cr>",
       desc = "Diagnostics (Trouble)",
     },
     {
-      "<leader>cD",
+      "<leader>cd",
       "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
       desc = "Buffer Diagnostics (Trouble)",
     },
