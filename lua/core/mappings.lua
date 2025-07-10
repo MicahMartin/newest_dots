@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.code_action()
     end, buffOpts)
     -- go to source header
-    vim.keymap.set("n", "grh", function()
+    vim.keymap.set("n", "gH", function()
       vim.lsp.buf_request(0, "textDocument/switchSourceHeader", { uri = vim.uri_from_bufnr(0) }, function(e, result)
         if result then
           vim.cmd("edit " .. vim.uri_to_fname(result))
@@ -48,10 +48,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end
       end)
     end, buffOpts)
-    -- go to type def
-    vim.keymap.set("n", "grt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", buffOpts)
-    -- go to decl
-    vim.keymap.set("n", "grd", "<cmd>lua vim.lsp.buf.declaration()<cr>", buffOpts)
+    -- unset the default mappings
     -- Copilot accept stuff
     vim.g.copilot_no_tab_map = true
     vim.keymap.set("i", "<C-CR>", 'copilot#Accept("\\<CR>")', {

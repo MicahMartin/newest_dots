@@ -52,34 +52,70 @@ return {
   keys = {
     --- TELESCOPE STYLE PICKERS
     {
-      "<leader>/",
+      "<leader>sf",
       function()
         Snacks.picker.grep()
       end,
       desc = "Grep Picker",
     },
     {
-      "<leader>n",
+      "<leader>sd",
       function()
         Snacks.picker.smart()
       end,
       desc = "Smart Picker",
     },
     {
-      "<leader>b",
+      "<leader>se",
       function()
         Snacks.picker.buffers()
       end,
       desc = "Buffer Picker",
     },
     {
-      "<leader>m",
+      "<leader>sr",
       function()
         Snacks.picker.marks()
       end,
       desc = "Marks Picker",
     },
     --- LSP PICKERS
+    {
+      "gd",
+      function()
+        Snacks.picker.lsp_definitions()
+      end,
+      desc = "Goto Definition",
+    },
+    {
+      "gD",
+      function()
+        Snacks.picker.lsp_declarations()
+      end,
+      desc = "Goto Declaration",
+    },
+    {
+      "gr",
+      function()
+        Snacks.picker.lsp_references()
+      end,
+      nowait = true,
+      desc = "References",
+    },
+    {
+      "gI",
+      function()
+        Snacks.picker.lsp_implementations()
+      end,
+      desc = "Goto Implementation",
+    },
+    {
+      "gy",
+      function()
+        Snacks.picker.lsp_type_definitions()
+      end,
+      desc = "Goto T[y]pe Definition",
+    },
     {
       "<leader>as",
       function()
