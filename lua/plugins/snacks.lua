@@ -66,18 +66,11 @@ return {
       desc = "Smart Picker",
     },
     {
-      "<leader>se",
+      "<leader>sg",
       function()
         Snacks.picker.buffers()
       end,
       desc = "Buffer Picker",
-    },
-    {
-      "<leader>sr",
-      function()
-        Snacks.picker.marks()
-      end,
-      desc = "Marks Picker",
     },
     --- LSP PICKERS
     {
@@ -103,7 +96,7 @@ return {
       desc = "References",
     },
     {
-      "gI",
+      "gm",
       function()
         Snacks.picker.lsp_implementations()
       end,
@@ -117,7 +110,7 @@ return {
       desc = "Goto T[y]pe Definition",
     },
     {
-      "<leader>as",
+      "<leader>se",
       function()
         Snacks.picker.lsp_symbols({
           tree = true,
@@ -131,7 +124,7 @@ return {
       desc = "LSP Symbols",
     },
     {
-      "<leader>aS",
+      "<leader>sE",
       function()
         Snacks.picker.lsp_workspace_symbols()
       end,

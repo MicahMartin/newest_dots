@@ -5,6 +5,16 @@ vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
 vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
 vim.keymap.set("v", "j", "gj", { noremap = true, silent = true })
 vim.keymap.set("v", "k", "gk", { noremap = true, silent = true })
+
+-- swap ; and :
+vim.keymap.set("n", ";", ":", { noremap = true })
+vim.keymap.set("n", ":", ";", { inoremap = true })
+vim.keymap.set("v", ";", ":", { noremap = true })
+vim.keymap.set("v", ":", ";", { inoremap = true })
+-- Duplicate a line and comment out the first line
+vim.keymap.set("n", "yc", "yy<cmd>normal gcc<CR>p")
+-- nnoremap <Leader>c */\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
+-- nnoremap <Leader>c #\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 ---------- GENERAL FILE CONTROL ----------
 -- conform lint
 vim.keymap.set("n", "<leader>ff", function()
