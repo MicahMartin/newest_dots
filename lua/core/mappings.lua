@@ -6,11 +6,10 @@ vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
 vim.keymap.set("v", "j", "gj", { noremap = true, silent = true })
 vim.keymap.set("v", "k", "gk", { noremap = true, silent = true })
 
--- swap ; and :
 vim.keymap.set("n", ";", ":", { noremap = true })
-vim.keymap.set("n", ":", ";", { inoremap = true })
+vim.keymap.set("n", ":", ";", { noremap = true })
 vim.keymap.set("v", ";", ":", { noremap = true })
-vim.keymap.set("v", ":", ";", { inoremap = true })
+vim.keymap.set("v", ":", ";", { noremap = true })
 -- Duplicate a line and comment out the first line
 vim.keymap.set("n", "yc", "yy<cmd>normal gcc<CR>p")
 -- nnoremap <Leader>c */\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
@@ -29,7 +28,7 @@ vim.keymap.set("n", "<leader>fp", function()
   print("File path copied to clipboard: " .. filePath) -- Optional: print message to confirm
 end, { desc = "Copy file path to clipboard" })
 -- copy buffer content
-vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR>", { desc = "general copy buffer" })
+vim.keymap.set("n", "<leader>fc", "<cmd>%y+<CR><CR>", { desc = "general copy buffer" })
 -- quit
 vim.keymap.set("n", "<leader>X", ":qa<CR>", { noremap = true, silent = true })
 -- clear highlight

@@ -15,6 +15,7 @@ return {
     selection_modes = {
       ["@parameter.outer"] = "v", -- charwise
       ["@function.outer"] = "V", -- linewise
+      ["@call.outer"] = "V", -- linewise
       ["@class.outer"] = "<c-v>", -- blockwise
     },
   },
@@ -92,12 +93,12 @@ return {
     -- swap
     local swap = require("nvim-treesitter-textobjects.swap")
     -- blocks
-    vim.keymap.set("n", ")B", function()
-      swap.swap_next("@block.outer")
-    end, { desc = "Swap with next block" })
-    vim.keymap.set("n", "(B", function()
-      swap.swap_previous("@block.outer")
-    end, { desc = "Swap with previous block" })
+    -- vim.keymap.set("n", ")B", function()
+    --   swap.swap_next("@block.outer")
+    -- end, { desc = "Swap with next block" })
+    -- vim.keymap.set("n", "(B", function()
+    --   swap.swap_previous("@block.outer")
+    -- end, { desc = "Swap with previous block" })
     -- numbers
     vim.keymap.set("n", ")N", function()
       swap.swap_next("@number.inner")
@@ -163,12 +164,12 @@ return {
       move.goto_previous_end("@assignment.outer")
     end, { desc = "next assignment end" })
     -- blocks
-    vim.keymap.set("n", "]B", function()
-      move.goto_next_start("@block.outer")
-    end, { desc = "next block start" })
-    vim.keymap.set("n", "[B", function()
-      move.goto_previous_start("@block.outer")
-    end, { desc = "prev block start" })
+    -- vim.keymap.set("n", "]B", function()
+    --   move.goto_next_start("@block.outer")
+    -- end, { desc = "next block start" })
+    -- vim.keymap.set("n", "[B", function()
+    --   move.goto_previous_start("@block.outer")
+    -- end, { desc = "prev block start" })
     -- numbers
     vim.keymap.set("n", "]N", function()
       move.goto_next_start("@number.inner")
