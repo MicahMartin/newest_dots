@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.code_action()
     end, buffOpts)
     -- go to source header
-    vim.keymap.set("n", "gH", function()
+    vim.keymap.set("n", "gh", function()
       vim.lsp.buf_request(0, "textDocument/switchSourceHeader", { uri = vim.uri_from_bufnr(0) }, function(e, result)
         if result then
           vim.cmd("edit " .. vim.uri_to_fname(result))
@@ -56,6 +56,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
           vim.notify_once("No match or error")
         end
       end)
+    end, buffOpts)
+
+    vim.keymap.set("n", "ga", function()
+      vim.lsp.buf.rename()
     end, buffOpts)
     -- unset the default mappings
     -- Copilot accept stuff

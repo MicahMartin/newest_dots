@@ -2,7 +2,8 @@ return {
   "folke/snacks.nvim",
   lazy = false,
   priority = 1000,
-  ---@type snacks.words.Config
+  ---@module 'snacks'
+  ---@type snacks.Config
   opts = {
     indent = {
       enabled = true,
@@ -15,6 +16,7 @@ return {
       enabled = true,
       sources = {
         explorer = {
+          layout = { preset = "vertical" },
           enabled = true,
           auto_close = true,
           replace_netrw = true,
@@ -52,7 +54,7 @@ return {
   keys = {
     --- TELESCOPE STYLE PICKERS
     {
-      "<leader>sf",
+      "<leader>sr",
       function()
         Snacks.picker.grep()
       end,
@@ -66,7 +68,7 @@ return {
       desc = "Smart Picker",
     },
     {
-      "<leader>sg",
+      "<leader>sf",
       function()
         Snacks.picker.buffers()
       end,
