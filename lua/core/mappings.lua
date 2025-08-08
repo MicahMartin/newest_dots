@@ -58,6 +58,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       end)
     end, buffOpts)
 
+    -- Refactor
     vim.keymap.set("n", "ga", function()
       vim.lsp.buf.rename()
     end, buffOpts)
