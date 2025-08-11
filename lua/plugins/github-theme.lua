@@ -1,25 +1,26 @@
-return {
-  "projekt0n/github-nvim-theme",
-  name = "github-theme",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    ---@type "github-nvim-theme-configuration"
-    require("github-theme").setup({
-      options = {
-        styles = {
-          comments = "italic",
-          keywords = "bold",
-          types = "italic,bold",
-        },
-      },
-      groups = {
-        all = {
-          WinSeparator = { fg = "#57e389" },
-        },
-      },
-    })
-
-    vim.cmd("colorscheme github_dark_default")
-  end,
-}
+-- return {
+--   "projekt0n/github-nvim-theme",
+--   name = "github-theme",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     ---@type "github-nvim-theme-configuration"
+--     require("github-theme").setup({
+--       options = {
+--         styles = {
+--           comments = "italic",
+--           keywords = "bold",
+--           types = "italic,bold",
+--         },
+--       },
+--       groups = {
+--         all = {
+--           WinSeparator = { fg = "#57e389" },
+--         },
+--       },
+--     })
+--
+--     vim.cmd("colorscheme github_dark_default")
+--   end,
+-- }
+return {}

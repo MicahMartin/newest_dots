@@ -1,4 +1,4 @@
-vim.lsp.enable({ "clangd", "lua_ls", "ts_ls", "gopls", "tailwindcss", "marksman", "gdscript" })
+vim.lsp.enable({ "clangd", "lua_ls", "ts_ls", "gopls", "tailwindcss", "gdscript" })
 ---@type lsp.ClientCapabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.semanticTokens.multilineTokenSupport = true
